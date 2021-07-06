@@ -28,7 +28,7 @@ public class App extends Application {
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("To Do Lists");
+            primaryStage.setTitle("To Do List");
             primaryStage.show();
 
         } catch (IOException e) {

@@ -45,30 +45,38 @@ public class TaskController {
     void addItemButtonPressed(ActionEvent event) {
         // Item title, description, and date added to table
         // Scene switches from TaskController to ToDoListController
+        //System.out.print(toToDoListController());
+        //closeWithAddItemButton();
+
+        if (toToDoListController()) {
+            System.out.print(closeWithAddItemButton());
+        }
 
         // add task object to list of tasks in a to do list object
     }
 
-    public String toToDoListController() {
-        try {
-            // Close current stage
-            Stage curStage = (Stage)addItemButton.getScene().getWindow();
-            curStage.close();
+    private String closeWithAddItemButton() {
+        Stage curStage = (Stage)addItemButton.getScene().getWindow();
+        curStage.close();
 
-            // Open new stage
+        return "Scene switched to ToDoListController.fxml\n";
+    }
+
+    public Boolean toToDoListController() {
+        try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ToDoListController.fxml")));
 
             Stage stage = new Stage();
 
             stage.setScene(new Scene(root));
-            stage.setTitle("To Do");
+            stage.setTitle("To Do List");
             stage.show();
+            return true;
 
-            return "Scene switched to ToDoListController.fxml\n";
         } catch (Exception e) {
-            return "Scene switch unsuccessful\n";
+            System.out.print("Scene switch unsuccessful.\n");
+            return false;
         }
-
     }
 
     @FXML
@@ -87,9 +95,24 @@ public class TaskController {
     void returnToToDoListButtonPressed(ActionEvent event) {
         // Make sure that any field that was filled is cleared
         // Change scene from TaskController to ToDoListController
+        //System.out.print(toToDoListController());
+
+        if (toToDoListController()) {
+            System.out.print(closeWithReturnToToDoListButton());
+        }
+
 
         // return something to make this testable
     }
+
+    private String closeWithReturnToToDoListButton() {
+        Stage curStage = (Stage) returnToToDoListButton.getScene().getWindow();
+        curStage.close();
+
+        return "Scene switched to ToDoListController.fxml\n";
+    }
+
+
 
     @FXML
     void taskDescriptionFieldFilled(ActionEvent event) {

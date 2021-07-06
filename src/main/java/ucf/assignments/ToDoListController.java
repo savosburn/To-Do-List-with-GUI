@@ -100,22 +100,16 @@ public class ToDoListController {
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("To Do");
+            stage.setTitle("New Task");
             stage.show();
 
-            return "Scene switched to task controller\n";
+            return "Scene switched to TaskController.fxml\n";
         } catch(Exception e) {
-            System.out.print("\nInvalid\n");
+
+            return "Scene switch unsuccessful.\n";
         }
-
-        return null;
     }
 
-    @FXML
-    void addToDoListButtonPressed(ActionEvent event) {
-        // List is added to lists
-        // ? maybe have scene switch from ToDoLisController to ListsController
-    }
 
     @FXML
     void deleteTaskButtonPressed(ActionEvent event) {

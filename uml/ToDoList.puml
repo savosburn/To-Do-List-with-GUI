@@ -35,7 +35,6 @@ class Task {
 class ToDoListController {
     + addTaskButtonPressed(ActionEvent): add new item to existing to do list
     + toTaskController(): Switches scene to TaskController.fxml and returns a string
-    + addToDoListButtonPressed(ActionEvent): adds to-do list and returns to list of lists
     + deleteTaskButtonPressed(ActionEvent): remove item from existing to do list
 
     + fileMenuButtonClicked(ActionEvent):
@@ -43,8 +42,6 @@ class ToDoListController {
     // THIS WILL NEED TO LOAD TO DO LIST NOT ITEMS
     + loadItemsButtonPressed(ActionEvent):
 
-    + returnToAllListsButtonPressed(ActionEvent): switches scene back to ListsController and removes anything that was not saved
-    + toListsController(): switches scene to ListsController and returns a string
     + saveItemsButtonPressed(ActionEvent): save all items in a single to do list to external storage
     + sortMenuButtonClicked(ActionEvent)):
            + viewAllTasksButtonPressed(ActionEvent)): display all existing items
@@ -60,9 +57,11 @@ class ToDoListController {
 
 class TaskController {
     + addItemButtonPressed(ActionEvent): adds item to ToDoList and switches screen
+    - closeWithAddItemButton(): closes the TaskController.fxml scene when the addItemButton is successfully pressed
     + taskDescriptionFieldFilled(ActionEvent): edit description of an item within an existing to do list
     + dueDateCalendarFieldFilled(ActionEvent): edit the due date of an item within an existing to do list
     + returnToToDOListButtonPressed(ActionEvent): switches screen to To-Do List
+    - closeWithReturnToToDoListButton(): closes the TaskController.fxml scene when the returnToToDoListButton is successfully pressed
     + titleTextFieldFilled((ActionEvent): add title to item in to do list
 }
 

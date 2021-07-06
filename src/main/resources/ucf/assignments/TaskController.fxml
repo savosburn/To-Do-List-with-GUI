@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="466.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.TaskController">
     <children>
         <TextField fx:id="taskDescriptionField" alignment="TOP_LEFT" layoutX="7.0" layoutY="179.0" onAction="#taskDescriptionFieldFilled" prefHeight="122.0" prefWidth="423.0" promptText="Enter Description...">
@@ -54,7 +53,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </DatePicker>
-        <Text fill="INDIANRED" layoutX="6.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date">
+        <Text fill="INDIANRED" layoutX="6.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date">
             <font>
                 <Font name="System Bold" size="15.0" />
             </font>
@@ -74,4 +73,3 @@
         </TextField>
     </children>
 </AnchorPane>
-
