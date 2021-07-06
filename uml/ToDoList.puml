@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App {
+    + main()
+    + start()
+}
+
+class AllLists {
+    // Each AllLists object should be able to hold a list of ToDoLists
+    - ToDoLists: ArrayList<>
+
+    + addToDoList(): adds a new to do list
+    + deleteToDolist(): removes an existing to do list
+}
+
+class ToDoList {
+    // Each to do list should be able to hold a table of tasks
+    - toDoTitle: string
+    - tasks: ArrayList<>
+
+    + addTask(): adds task to arrayList
+    + deleteTask(): removes task from arrayList
+    + displayTasks()
+    + updateToDoTitle(): user can rename list
+
+}
+
+class Task {
+    completed: boolean
+    taskTitle: string
+    taskDescription: string
+    date: datePicker?
+
+    + updateDate()
+    + updateDescription()
+    + updateTitle()
+    + isCompleted()
+
+    + toString(): see if this will be necessary
+}
+
+class ListController {
+    + addListButtonPressed(ActionEvent): add new to do list
+    + deleteListButtonPressed(ActionEvent): remove an existing to do list
+    + saveListsButtonPressed(ActionEvent): save all items in all to do lists to external storage
+    + loadListsButtonPressed(ActionEvent): load single or multiple to do list from external storage
+}
+
+class ToDoListController {
+    + addTaskButtonPressed(ActionEvent): add new item to existing to do list
+    + addToDoListButtonPressed(ActionEvent): adds to-do list and returns to list of lists
+    + deleteTaskButtonPressed(ActionEvent): remove item from existing to do list
+    + taskCompletedCheckBoxClicked(): mark an item in a to do list as complete
+    + sortMenuButtonClicked(ActionEvent)):
+        + viewAllTasksButtonPressed(ActionEvent)): display all existing items
+        + viewIncompleteTasksButtonPressed(ActionEvent)): display only the incompleted items
+        + viewCompleteTasksButtonPressed(ActionEvent): display completed items
+    + sortByDateButtonClicked(ActionEvent): sort items by due date
+    + titleTextFieldClicked(ActionEvent)): edit the title of existing to do list
+    + saveItemsButtonPressed(ActionEvent): save all items in a single to do list to external storage
+}
+
+class TaskController {
+    + addItemButtonPressed(ActionEvent): adds item to ToDoList and switches screen
+    + taskDescriptionFieldFilled(ActionEvent): edit description of an item within an existing to do list
+    + dueDateCalendarFieldFilled(ActionEvent): edit the due date of an item within an existing to do list
+    + returnToToDOListButtonPressed(ActionEvent): switches screen to To-Do List
+    + titleTextFieldFilled((ActionEvent): add title to item in to do list
+}
+
+
+
+
+javafx.Application <|- App
+App -- ListController
+App -- AllLists
+ListController *--> ToDoListController
+ToDoListController *--> TaskController
+AllLists *--> ToDoList
+ToDoList *--> Task
+AllLists - ListController
+ToDoList - ToDoListController
+Task - TaskController
+
+@enduml
