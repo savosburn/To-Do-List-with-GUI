@@ -45,8 +45,6 @@ public class TaskController {
     void addItemButtonPressed(ActionEvent event) {
         // Item title, description, and date added to table
         // Scene switches from TaskController to ToDoListController
-        //System.out.print(toToDoListController());
-        //closeWithAddItemButton();
 
         if (toToDoListController()) {
             System.out.print(closeWithAddItemButton());
