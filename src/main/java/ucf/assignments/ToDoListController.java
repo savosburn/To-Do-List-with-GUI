@@ -6,6 +6,7 @@
 package ucf.assignments;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,26 +83,31 @@ public class ToDoListController {
     @FXML
     void addTaskButtonPressed(ActionEvent event) {
         // Scene switches from ToDoListController to TaskController
+        System.out.print(toTaskController());
         // User adds task
         // Scene switches back if it's added
+    }
 
-        // Modify later: Starter code so grader can see next fxml screen
+    // Pre-conditions:
+    // Post-conditions: Switches scene to TaskController.fxml and returns a string
+    public String toTaskController() {
         try {
-            Stage stageOne = (Stage) addTaskButton.getScene().getWindow();
-            stageOne.close();
+            Stage curStage = (Stage)addTaskButton.getScene().getWindow();
+            curStage.close();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TaskController.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("TaskController.fxml")));
 
-            Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("New Task");
+            stage.setTitle("To Do");
             stage.show();
 
-            System.out.print("\nScene switched.\n");
-        } catch (Exception e) {
-            System.out.print("Invalid");
+            return "Scene switched to task controller\n";
+        } catch(Exception e) {
+            System.out.print("\nInvalid\n");
         }
+
+        return null;
     }
 
     @FXML

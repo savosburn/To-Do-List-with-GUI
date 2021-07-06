@@ -7,6 +7,7 @@ package ucf.assignments;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,34 +57,41 @@ public class ListsController {
 
 
     @FXML
-    void addListButtonPressed(ActionEvent event) throws IOException {
+    void addListButtonPressed(ActionEvent event) {
 
         /* May help with switching between scenes:
            https://www.youtube.com/watch?v=hcM-R-YOKkQ
          */
 
         // Set scene to ToDoListController
+        System.out.print(toToDoListController());
         // Allow user to fill in information
         // Return to ListsController Scene
         // Only to do list's title should be displayed
 
         // Modify later: Starter code so grader can see next fxml screen
+    }
+
+    // Pre-conditions:
+    // Post-conditions: Switches scene to ToDoListController.fxml and returns a string
+    public String toToDoListController() {
         try {
-            Stage stageOne = (Stage) newToDoListButton.getScene().getWindow();
-            stageOne.close();
+            Stage curStage = (Stage) newToDoListButton.getScene().getWindow();
+            curStage.close();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ToDoListController.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ToDoListController.fxml")));
 
-            Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("To Do");
             stage.show();
 
-            System.out.print("\nScene switched.\n");
+            return "Scene switched to To Do List Controller\n";
         } catch (Exception e) {
-            System.out.print("Invalid");
+            System.out.print("\nInvalid\n");
         }
+
+        return null;
     }
 
     @FXML
