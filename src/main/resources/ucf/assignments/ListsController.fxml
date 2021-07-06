@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ucf.assignments.ListsController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="580.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ListsController">
+    <children>
+        <AnchorPane prefHeight="64.0" prefWidth="440.0" style="-fx-background-color: #F08080;">
+            <children>
+                <Text fill="WHITE" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALL LISTS" wrappingWidth="196.66485595703125">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                </Text>
+                <MenuButton fx:id="fileActionsMenu" layoutX="295.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #CD5C5C;" text="File Actions" textFill="WHITE">
+                    <items>
+                        <MenuItem fx:id="saveListsButton" mnemonicParsing="false" onAction="#saveListsButtonPressed" text="Save To Do Lists" />
+                        <MenuItem fx:id="loadListsButton" mnemonicParsing="false" onAction="#loadListsButtonPressed" text="Load To Do Lists" />
+                    </items>
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </MenuButton>
+            </children>
+        </AnchorPane>
+        <ListView fx:id="toDoListLists" layoutX="17.0" layoutY="96.0" prefHeight="418.0" prefWidth="410.0">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ListView>
+        <Button fx:id="newToDoListButton" layoutX="307.0" layoutY="529.0" mnemonicParsing="false" onAction="#addListButtonPressed" prefHeight="37.0" prefWidth="118.0" style="-fx-background-color: #F08080;" text="+ Add List" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="deleteListsButton" layoutX="14.0" layoutY="529.0" mnemonicParsing="false" onAction="#deleteListButtonPressed" prefHeight="37.0" prefWidth="118.0" style="-fx-background-color: #F08080;" text="🗑 Delete List" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Text fill="INDIANRED" layoutX="14.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+    </children>
 </AnchorPane>
+
