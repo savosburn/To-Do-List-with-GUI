@@ -165,13 +165,6 @@ public class ToDoListController {
     }
 
     @FXML
-    void titleTextFieldClicked(ActionEvent event) {
-        // User Clicks on text field
-        // User types in title
-        // To-Do List title is renamed
-    }
-
-    @FXML
     void sortByDateButtonClicked(ActionEvent event) {
         // Sorts by date
         // This method is likely unnecessary
@@ -183,12 +176,10 @@ public class ToDoListController {
         assert fileMenuButton != null : "fx:id=\"fileMenuButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert saveItemsButton != null : "fx:id=\"saveItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert loadItemsButton != null : "fx:id=\"loadItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
-        assert returnToAllListsButton != null : "fx:id=\"returnToAllListsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert sortMenuButton != null : "fx:id=\"sortMenuButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewAllTasksButton != null : "fx:id=\"viewAllTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewCompleteTasksButton != null : "fx:id=\"viewCompleteTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewIncompleteTasksButton != null : "fx:id=\"viewIncompleteTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
-        assert titleTextField != null : "fx:id=\"titleTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskTable != null : "fx:id=\"taskTable\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert markCompletedColumn != null : "fx:id=\"markCompletedColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskTitleColumn != null : "fx:id=\"taskTitleColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
@@ -196,6 +187,5 @@ public class ToDoListController {
         assert dueDateColumn != null : "fx:id=\"dueDateColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert addTaskButton != null : "fx:id=\"addTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
-        assert addToDoListButton != null : "fx:id=\"addToDoListButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
     }
 }

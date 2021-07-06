@@ -133,6 +133,5 @@ public class TaskController {
         assert addItemButton != null : "fx:id=\"addItemButton\" was not injected: check your FXML file 'TaskController.fxml'.";
         assert dueDateCalendarField != null : "fx:id=\"dueDateCalendarField\" was not injected: check your FXML file 'TaskController.fxml'.";
         assert titleTextField != null : "fx:id=\"titleTextField\" was not injected: check your FXML file 'TaskController.fxml'.";
-
     }
 }

@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public class ToDoList {
 
-    public String toDoTitle;
-
     // This definitely shouldn't be strings
     //      determine proper type later
     public ArrayList<String> tasks;
@@ -43,11 +41,4 @@ public class ToDoList {
         return null; // change later
     }
 
-    public String updateToDoTitle(String title) {
-
-        // Assign string to the title
-        // Return the new title to ensure that it was updated
-
-        return null; // change later
-    }
 }
