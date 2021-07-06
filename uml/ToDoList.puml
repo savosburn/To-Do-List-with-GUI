@@ -6,14 +6,6 @@ class App {
     + start()
 }
 
-class AllLists {
-    // Each AllLists object should be able to hold a list of ToDoLists
-    - ToDoLists: ArrayList<>
-
-    + addToDoList(): adds a new to do list
-    + deleteToDolist(): removes an existing to do list
-}
-
 class ToDoList {
     // Each to do list should be able to hold a table of tasks
     - toDoTitle: string
@@ -40,15 +32,6 @@ class Task {
     + toString(): see if this will be necessary
 }
 
-class ListController {
-    + addListButtonPressed(ActionEvent): add new to do list
-    + toToDoListController(): switches scene to ToDoListController.fxml and returns a string
-    + deleteListButtonPressed(ActionEvent): remove an existing to do list
-    + saveListsButtonPressed(ActionEvent): save all items in all to do lists to external storage
-    + loadListsButtonPressed(ActionEvent): load single or multiple to do list from external storage
-    + initialize():
-}
-
 class ToDoListController {
     + addTaskButtonPressed(ActionEvent): add new item to existing to do list
     + toTaskController(): Switches scene to TaskController.fxml and returns a string
@@ -56,7 +39,10 @@ class ToDoListController {
     + deleteTaskButtonPressed(ActionEvent): remove item from existing to do list
 
     + fileMenuButtonClicked(ActionEvent):
+
+    // THIS WILL NEED TO LOAD TO DO LIST NOT ITEMS
     + loadItemsButtonPressed(ActionEvent):
+
     + returnToAllListsButtonPressed(ActionEvent): switches scene back to ListsController and removes anything that was not saved
     + toListsController(): switches scene to ListsController and returns a string
     + saveItemsButtonPressed(ActionEvent): save all items in a single to do list to external storage
@@ -84,13 +70,10 @@ class TaskController {
 
 
 javafx.Application <|- App
-App -- ListController
-App -- AllLists
-ListController *--> ToDoListController
+App *--> ToDoListController
+App *--> ToDoList
 ToDoListController *--> TaskController
-AllLists *--> ToDoList
 ToDoList *--> Task
-AllLists - ListController
 ToDoList - ToDoListController
 Task - TaskController
 

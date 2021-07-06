@@ -15,7 +15,7 @@
     <children>
         <AnchorPane prefHeight="71.0" prefWidth="886.0" style="-fx-background-color: #F08080;">
             <children>
-                <Text fill="WHITE" layoutX="71.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Do" wrappingWidth="268.2429962158203">
+                <Text fill="WHITE" layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Do" wrappingWidth="268.2429962158203">
                     <font>
                         <Font name="System Bold" size="40.0" />
                     </font>
@@ -32,14 +32,6 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </MenuButton>
-                <Button fx:id="returnToAllListsButton" layoutY="2.0" mnemonicParsing="false" onAction="#returnToAllListsButtonPressed" prefHeight="64.0" prefWidth="71.0" style="-fx-background-color: #F08080;" text="←" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="32.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
                 <MenuButton fx:id="sortMenuButton" layoutX="645.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortMenuButtonClicked" style="-fx-background-color: #CD5C5C;" text="Sort" textFill="WHITE">
                     <items>
                         <MenuItem fx:id="viewAllTasksButton" mnemonicParsing="false" onAction="#viewAllTasksButtonPressed" text="All Tasks" />

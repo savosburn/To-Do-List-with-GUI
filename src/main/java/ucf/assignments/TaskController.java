@@ -6,12 +6,17 @@
 package ucf.assignments;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class TaskController {
 
@@ -42,6 +47,28 @@ public class TaskController {
         // Scene switches from TaskController to ToDoListController
 
         // add task object to list of tasks in a to do list object
+    }
+
+    public String toToDoListController() {
+        try {
+            // Close current stage
+            Stage curStage = (Stage)addItemButton.getScene().getWindow();
+            curStage.close();
+
+            // Open new stage
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ToDoListController.fxml")));
+
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("To Do");
+            stage.show();
+
+            return "Scene switched to ToDoListController.fxml\n";
+        } catch (Exception e) {
+            return "Scene switch unsuccessful\n";
+        }
+
     }
 
     @FXML
