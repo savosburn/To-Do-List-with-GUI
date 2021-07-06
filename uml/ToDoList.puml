@@ -42,23 +42,34 @@ class Task {
 
 class ListController {
     + addListButtonPressed(ActionEvent): add new to do list
+    + toToDoListController(): switches scene to ToDoListController.fxml and returns a string
     + deleteListButtonPressed(ActionEvent): remove an existing to do list
     + saveListsButtonPressed(ActionEvent): save all items in all to do lists to external storage
     + loadListsButtonPressed(ActionEvent): load single or multiple to do list from external storage
+    + initialize():
 }
 
 class ToDoListController {
     + addTaskButtonPressed(ActionEvent): add new item to existing to do list
+    + toTaskController(): Switches scene to TaskController.fxml and returns a string
     + addToDoListButtonPressed(ActionEvent): adds to-do list and returns to list of lists
     + deleteTaskButtonPressed(ActionEvent): remove item from existing to do list
-    + taskCompletedCheckBoxClicked(): mark an item in a to do list as complete
-    + sortMenuButtonClicked(ActionEvent)):
-        + viewAllTasksButtonPressed(ActionEvent)): display all existing items
-        + viewIncompleteTasksButtonPressed(ActionEvent)): display only the incompleted items
-        + viewCompleteTasksButtonPressed(ActionEvent): display completed items
-    + sortByDateButtonClicked(ActionEvent): sort items by due date
-    + titleTextFieldClicked(ActionEvent)): edit the title of existing to do list
+
+    + fileMenuButtonClicked(ActionEvent):
+    + loadItemsButtonPressed(ActionEvent):
+    + returnToAllListsButtonPressed(ActionEvent): switches scene back to ListsController and removes anything that was not saved
+    + toListsController(): switches scene to ListsController and returns a string
     + saveItemsButtonPressed(ActionEvent): save all items in a single to do list to external storage
+    + sortMenuButtonClicked(ActionEvent)):
+           + viewAllTasksButtonPressed(ActionEvent)): display all existing items
+           + viewIncompleteTasksButtonPressed(ActionEvent)): display only the incompleted items
+           + viewCompleteTasksButtonPressed(ActionEvent): display completed items
+    + titleTextFieldClicked(ActionEvent)): edit the title of existing to do list
+    + sortByDateButtonClicked(ActionEvent): sort items by due date
+    + initialize():
+
+    + taskCompletedCheckBoxClicked(): mark an item in a to do list as complete
+
 }
 
 class TaskController {

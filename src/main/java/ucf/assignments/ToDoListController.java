@@ -146,18 +146,23 @@ public class ToDoListController {
         // There should be no new lists in the ListsController scene unless the saveItemsButton was pressed
     }
 
+    // Pre-conditions:
+    // Post-conditions: switches scene to ListsController and returns a string
     public String toListsController() {
         try {
             Stage curStage = (Stage)returnToAllListsButton.getScene().getWindow();
             curStage.close();
 
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ListsController.fxml")));
+
             Stage stage = new Stage();
+
             stage.setScene(new Scene(root));
             stage.setTitle("To Do Lists");
             stage.show();
 
             return "Scene switched to ListsController.fxml\n";
+
         } catch (Exception e) {
             return "Scene switch unsuccessful\n";
         }

@@ -46,15 +46,9 @@ public class ListsController {
     @FXML
     private Button deleteListsButton;
 
-    private Stage stage;
-    private Parent root;
-
-
     /*
             Create a list of to-do list objects somehow
      */
-
-
 
     @FXML
     void addListButtonPressed(ActionEvent event) {
@@ -65,6 +59,7 @@ public class ListsController {
 
         // Set scene to ToDoListController
         System.out.print(toToDoListController());
+
         // Allow user to fill in information
         // Return to ListsController Scene
         // Only to do list's title should be displayed
@@ -76,22 +71,23 @@ public class ListsController {
     // Post-conditions: Switches scene to ToDoListController.fxml and returns a string
     public String toToDoListController() {
         try {
+            // Close current stage
             Stage curStage = (Stage) newToDoListButton.getScene().getWindow();
             curStage.close();
 
+            // Open new stage
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ToDoListController.fxml")));
 
             Stage stage = new Stage();
+
             stage.setScene(new Scene(root));
             stage.setTitle("To Do");
             stage.show();
 
-            return "Scene switched to To Do List Controller\n";
+            return "Scene switched to ToDoListController.fxml\n";
         } catch (Exception e) {
-            System.out.print("\nInvalid\n");
+            return "Scene switch unsuccessful\n";
         }
-
-        return null;
     }
 
     @FXML
