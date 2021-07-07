@@ -82,7 +82,6 @@ public class ToDoListController {
     @FXML
     private DatePicker dueDatePicker;
 
-
     @FXML
     public void addTaskButtonPressed(ActionEvent event) {
 
@@ -108,6 +107,16 @@ public class ToDoListController {
         dueDatePicker.getEditor().clear();
     }
 
+    @FXML
+    public String dueDatePicked() {
+
+        // Signify that a date was picked
+        String output = dueDatePicker.getValue().toString();
+        System.out.print(output + " picked.\n");
+        return output;
+
+    }
+
     // Pre-conditions:
     // Post-conditions: Switches scene to TaskController.fxml and returns a string
     public String toTaskController() {
@@ -128,7 +137,6 @@ public class ToDoListController {
             return "Scene switch unsuccessful.\n";
         }
     }
-
 
     @FXML
     public Boolean deleteTaskButtonPressed() {
