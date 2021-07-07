@@ -82,9 +82,6 @@ public class ToDoListController {
     private Button deleteTaskButton;
 
     @FXML
-    private Button addToDoListButton;
-
-    @FXML
     private TextField isCompletedTextField;
 
     @FXML
@@ -146,10 +143,12 @@ public class ToDoListController {
 
 
     @FXML
-    void deleteTaskButtonPressed(ActionEvent event) {
-        // User clicks on a task
-        // User clicks on delete
-        // Task is deleted and other tasks move up to fill the space
+    public Boolean deleteTaskButtonPressed(ActionEvent event) {
+
+        // User selects row and presses delete to remove item
+        return taskTable.getItems().removeAll(
+                taskTable.getSelectionModel().getSelectedItems()
+        );
     }
 
     @FXML
