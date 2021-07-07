@@ -74,9 +74,25 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-      <TextField layoutX="14.0" layoutY="549.0" prefHeight="26.0" prefWidth="80.0" />
-      <TextField layoutX="105.0" layoutY="549.0" prefHeight="26.0" prefWidth="149.0" />
-      <TextField layoutX="263.0" layoutY="549.0" prefHeight="26.0" prefWidth="366.0" />
-      <TextField layoutX="637.0" layoutY="549.0" prefHeight="26.0" prefWidth="124.0" />
+      <TextField fx:id="isCompletedTextField" layoutX="14.0" layoutY="549.0" prefHeight="26.0" prefWidth="74.0" promptText="Completed?">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="taskTitleTextField" layoutX="90.0" layoutY="549.0" prefHeight="26.0" prefWidth="165.0" promptText="Enter task name...">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="taskDescriptionTextField" layoutX="257.0" layoutY="549.0" prefHeight="26.0" prefWidth="372.0" promptText="Enter task description...">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextField fx:id="taskDueDateTextField" layoutX="631.0" layoutY="549.0" prefHeight="26.0" prefWidth="130.0" promptText="Enter task due date...">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
     </children>
 </AnchorPane>

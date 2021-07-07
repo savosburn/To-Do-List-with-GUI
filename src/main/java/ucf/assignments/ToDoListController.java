@@ -85,11 +85,34 @@ public class ToDoListController {
     private Button addToDoListButton;
 
     @FXML
-    void addTaskButtonPressed(ActionEvent event) {
+    private TextField isCompletedTextField;
+
+    @FXML
+    private TextField taskTitleTextField;
+
+    @FXML
+    private TextField taskDescriptionTextField;
+
+    @FXML
+    private TextField taskDueDateTextField;
+
+    @FXML
+    public void addTaskButtonPressed(ActionEvent event) {
 
         // Scene switches from ToDoListController to TaskController
-        System.out.print(toTaskController());
+        //System.out.print(toTaskController());
 
+        ToDoList td = new ToDoList();
+        td.setIsCompleted(isCompletedTextField.getText());
+        td.setTaskTitle(taskTitleTextField.getText());
+        td.setTaskDescription(taskDescriptionTextField.getText());
+        td.setDueDate(taskDueDateTextField.getText());
+
+        taskTable.getItems().add(td);
+        isCompletedTextField.clear();
+        taskTitleTextField.clear();
+        taskDescriptionTextField.clear();
+        taskDueDateTextField.clear();
 
 
 

@@ -12,6 +12,61 @@ import java.text.SimpleDateFormat;
 
 public class ToDoList {
 
+
+    String isCompleted;
+    String taskTitle;
+    String taskDescription;
+    String dueDate;
+
+    public ToDoList() {
+    }
+
+    public ToDoList(String isCompleted, String taskTitle, String taskDescription, String dueDate) {
+        this.isCompleted = isCompleted;
+        this.taskTitle = taskTitle;
+        this.taskDescription = taskDescription;
+        this.dueDate = dueDate;
+    }
+
+    public String getIsCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(String isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
+    public String getTaskTitle() {
+        return taskTitle;
+    }
+
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
+    }
+
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+
+
+
+
+
+
+    /*
     private final SimpleStringProperty isCompleted;
     private final SimpleStringProperty taskTitle;
     private final SimpleStringProperty taskDescription;
@@ -28,7 +83,7 @@ public class ToDoList {
         return isCompleted.get();
     }
 
-    public void setFirstName(String completed) {
+    public void setIsCompleted(String completed) {
         isCompleted.set(completed);
     }
 
