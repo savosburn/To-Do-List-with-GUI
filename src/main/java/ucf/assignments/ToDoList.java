@@ -7,13 +7,15 @@ package ucf.assignments;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
 
 import java.text.SimpleDateFormat;
 
 public class ToDoList {
 
 
-    String isCompleted;
+    //String isCompleted;
+    private CheckBox isCompleted;
     String taskTitle;
     String taskDescription;
     String dueDate;
@@ -21,18 +23,19 @@ public class ToDoList {
     public ToDoList() {
     }
 
-    public ToDoList(String isCompleted, String taskTitle, String taskDescription, String dueDate) {
-        this.isCompleted = isCompleted;
+    public ToDoList(String taskTitle, String taskDescription, String dueDate) {
+        //this.isCompleted = isCompleted;
+        this.isCompleted = new CheckBox();
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
         this.dueDate = dueDate;
     }
 
-    public String getIsCompleted() {
+    public CheckBox getIsCompleted() {
         return isCompleted;
     }
 
-    public void setIsCompleted(String isCompleted) {
+    public void setIsCompleted(CheckBox isCompleted) {
         this.isCompleted = isCompleted;
     }
 

@@ -13,16 +13,13 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -64,7 +61,7 @@ public class ToDoListController {
     private TableView<ToDoList> taskTable;
 
     @FXML
-    private TableColumn<ToDoList, String> markCompletedColumn;
+    private TableColumn<ToDoList, CheckBox> markCompletedColumn;
 
     @FXML
     private TableColumn<ToDoList, String> taskTitleColumn;
@@ -93,21 +90,26 @@ public class ToDoListController {
     @FXML
     private TextField taskDueDateTextField;
 
+
+
     @FXML
     public void addTaskButtonPressed(ActionEvent event) {
 
         ToDoList td = new ToDoList();
 
         // Get user input and add it to the table
+
+
         setItems(td);
         taskTable.getItems().add(td);
+
 
         // Clear the text fields
         clearTextFields();
     }
 
     private void setItems(ToDoList td) {
-        td.setIsCompleted(isCompletedTextField.getText());
+        //td.setIsCompleted(isCompletedTextField.getText());
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
         td.setDueDate(taskDueDateTextField.getText());
@@ -143,7 +145,7 @@ public class ToDoListController {
 
 
     @FXML
-    public Boolean deleteTaskButtonPressed(ActionEvent event) {
+    public Boolean deleteTaskButtonPressed() {
 
         // User selects row and presses delete to remove item
         return taskTable.getItems().removeAll(
@@ -225,7 +227,13 @@ public class ToDoListController {
 
 
         // Set up the columns in the table
-        markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("isCompleted"));
+
+
+
+        // DETERMINE IF WE NEED BOTH OF THESE
+        //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, CheckBox>("isCompleted"));
+        markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
