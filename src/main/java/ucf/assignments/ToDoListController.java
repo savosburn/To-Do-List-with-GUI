@@ -11,11 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,7 +51,6 @@ public class ToDoListController {
     @FXML
     private MenuItem viewIncompleteTasksButton;
 
-
     // THIS WAS MODIFIED FROM: private TableView<?> taskTable;
     @FXML
     private TableView<ToDoList> taskTable;
@@ -79,28 +74,14 @@ public class ToDoListController {
     private Button deleteTaskButton;
 
     @FXML
-    private TextField isCompletedTextField;
-
-    @FXML
     private TextField taskTitleTextField;
 
     @FXML
     private TextField taskDescriptionTextField;
 
     @FXML
-    private TextField taskDueDateTextField;
-
-
-
-
-
-    @FXML
     private DatePicker dueDatePicker;
 
-    @FXML
-    void dueDatePicked(ActionEvent event) {
-
-    }
 
     @FXML
     public void addTaskButtonPressed(ActionEvent event) {
@@ -108,34 +89,23 @@ public class ToDoListController {
         ToDoList td = new ToDoList();
 
         // Get user input and add it to the table
-
-
-
-
         setItems(td);
         taskTable.getItems().add(td);
 
-
         // Clear the text fields
-        dueDatePicker.getEditor().clear();  // See if this can be put in a different function
-
         clearTextFields();
     }
 
     private void setItems(ToDoList td) {
-        //td.setIsCompleted(isCompletedTextField.getText());
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
-        //td.setDueDate(taskDueDateTextField.getText());
-
         td.setDueDate(dueDatePicker.getValue().toString());
     }
 
     private void clearTextFields() {
-        isCompletedTextField.clear();
         taskTitleTextField.clear();
         taskDescriptionTextField.clear();
-        //taskDueDateTextField.clear();
+        dueDatePicker.getEditor().clear();
     }
 
     // Pre-conditions:
@@ -216,15 +186,7 @@ public class ToDoListController {
     }
 
     @FXML
-    void sortByDateButtonClicked(ActionEvent event) {
-        // Sorts by date
-        // This method is likely unnecessary
-        // Table automatically allows user to sort by date if they click on the column heading
-    }
-
-    @FXML
     public void initialize() {
-
 
         assert fileMenuButton != null : "fx:id=\"fileMenuButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert saveItemsButton != null : "fx:id=\"saveItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
@@ -241,12 +203,7 @@ public class ToDoListController {
         assert addTaskButton != null : "fx:id=\"addTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
 
-
         // Set up the columns in the table
-
-
-
-
         // BREAK INTO SMALLER METHODS
         dueDatePicker.setConverter(new StringConverter<LocalDate>() {
 
@@ -268,23 +225,9 @@ public class ToDoListController {
             }
         });
 
-
-
-
-        // DETERMINE IF WE NEED BOTH OF THESE
-        //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, CheckBox>("isCompleted"));
         markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<>());
-
-
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
     }
-
-
-
-
-
-
-
 }
