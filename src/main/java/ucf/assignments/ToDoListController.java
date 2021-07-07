@@ -44,9 +44,6 @@ public class ToDoListController {
     private MenuItem loadItemsButton;
 
     @FXML
-    private Button returnToAllListsButton;
-
-    @FXML
     private MenuButton sortMenuButton;
 
     @FXML
@@ -105,10 +102,6 @@ public class ToDoListController {
 
     }
 
-
-
-
-
     @FXML
     public void addTaskButtonPressed(ActionEvent event) {
 
@@ -124,6 +117,8 @@ public class ToDoListController {
 
 
         // Clear the text fields
+        dueDatePicker.getEditor().clear();  // See if this can be put in a different function
+
         clearTextFields();
     }
 
@@ -131,14 +126,16 @@ public class ToDoListController {
         //td.setIsCompleted(isCompletedTextField.getText());
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
-        td.setDueDate(taskDueDateTextField.getText());
+        //td.setDueDate(taskDueDateTextField.getText());
+
+        td.setDueDate(dueDatePicker.getValue().toString());
     }
 
     private void clearTextFields() {
         isCompletedTextField.clear();
         taskTitleTextField.clear();
         taskDescriptionTextField.clear();
-        taskDueDateTextField.clear();
+        //taskDueDateTextField.clear();
     }
 
     // Pre-conditions:
