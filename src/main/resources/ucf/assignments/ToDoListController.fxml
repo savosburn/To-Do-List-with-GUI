@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
@@ -45,7 +46,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </MenuButton>
-              <Button fx:id="deleteTaskButton" layoutX="499.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteTaskButtonPressed" style="-fx-background-color: #F08080;" text="🗑 Delete Task" textFill="WHITE">
+              <Button fx:id="deleteTaskButton" layoutX="513.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteTaskButtonPressed" style="-fx-background-color: #CD5C5C;" text="🗑 Delete Task" textFill="WHITE">
                   <font>
                       <Font name="System Bold" size="16.0" />
                   </font>
@@ -57,16 +58,16 @@
         </AnchorPane>
         <TableView fx:id="taskTable" editable="true" layoutX="13.0" layoutY="87.0" prefHeight="450.0" prefWidth="860.0">
             <columns>
-                <TableColumn fx:id="markCompletedColumn" prefWidth="75.0" text="Completed" />
-                <TableColumn fx:id="taskTitleColumn" prefWidth="163.20001220703125" text="Task" />
-                <TableColumn fx:id="descriptionColumn" prefWidth="376.80006408691406" text="Description" />
-                <TableColumn fx:id="dueDateColumn" prefWidth="249.59991455078125" text="Due date" />
+                <TableColumn fx:id="markCompletedColumn" prefWidth="111.19997882843018" text="Completed" />
+                <TableColumn fx:id="taskTitleColumn" prefWidth="159.2000274658203" text="Task" />
+                <TableColumn fx:id="descriptionColumn" prefWidth="431.199951171875" text="Description" />
+                <TableColumn fx:id="dueDateColumn" prefWidth="167.199951171875" text="Due date" />
             </columns>
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </TableView>
-        <Button fx:id="addTaskButton" layoutX="766.0" layoutY="543.0" mnemonicParsing="false" onAction="#addTaskButtonPressed" style="-fx-background-color: #F08080;" text="+ Add Task" textFill="WHITE">
+        <Button fx:id="addTaskButton" layoutX="13.0" layoutY="544.0" mnemonicParsing="false" onAction="#addTaskButtonPressed" style="-fx-background-color: #F08080;" text="+ Add Task" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
@@ -74,25 +75,16 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-      <TextField fx:id="isCompletedTextField" layoutX="14.0" layoutY="549.0" prefHeight="26.0" prefWidth="74.0" promptText="Completed?">
+      <TextField fx:id="taskTitleTextField" layoutX="123.0" layoutY="549.0" prefHeight="26.0" prefWidth="151.0" promptText="Enter task name...">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="taskTitleTextField" layoutX="90.0" layoutY="549.0" prefHeight="26.0" prefWidth="165.0" promptText="Enter task name...">
+      <TextField fx:id="taskDescriptionTextField" layoutX="281.0" layoutY="549.0" prefHeight="26.0" prefWidth="436.0" promptText="Enter task description...">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="taskDescriptionTextField" layoutX="257.0" layoutY="549.0" prefHeight="26.0" prefWidth="372.0" promptText="Enter task description...">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <TextField fx:id="taskDueDateTextField" layoutX="631.0" layoutY="549.0" prefHeight="26.0" prefWidth="130.0" promptText="Enter task due date...">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
+      <DatePicker fx:id="dueDatePicker" layoutX="721.0" layoutY="549.0" onAction="#dueDatePicked" prefHeight="26.0" prefWidth="151.0" promptText="Choose due date..." />
     </children>
 </AnchorPane>

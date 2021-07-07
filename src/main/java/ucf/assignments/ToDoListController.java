@@ -6,6 +6,8 @@
 package ucf.assignments;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -22,6 +24,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class ToDoListController {
 
@@ -92,12 +95,28 @@ public class ToDoListController {
 
 
 
+
+
+    @FXML
+    private DatePicker dueDatePicker;
+
+    @FXML
+    void dueDatePicked(ActionEvent event) {
+
+    }
+
+
+
+
+
     @FXML
     public void addTaskButtonPressed(ActionEvent event) {
 
         ToDoList td = new ToDoList();
 
         // Get user input and add it to the table
+
+
 
 
         setItems(td);
@@ -230,9 +249,35 @@ public class ToDoListController {
 
 
 
+
+        // BREAK INTO SMALLER METHODS
+        dueDatePicker.setConverter(new StringConverter<LocalDate>() {
+
+            private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            @Override
+            public String toString(LocalDate localDate) {
+                if (localDate == null)
+                    return "";
+                return dateTimeFormatter.format(localDate);
+            }
+
+            @Override
+            public LocalDate fromString(String dateString) {
+                if (dateString == null || dateString.trim().isEmpty()) {
+                    return null;
+                }
+                return LocalDate.parse(dateString, dateTimeFormatter);
+            }
+        });
+
+
+
+
         // DETERMINE IF WE NEED BOTH OF THESE
         //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, CheckBox>("isCompleted"));
         markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+
 
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));

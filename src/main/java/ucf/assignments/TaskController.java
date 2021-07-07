@@ -6,6 +6,8 @@
 package ucf.assignments;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -21,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class TaskController{
 
@@ -144,6 +147,29 @@ public class TaskController{
         // Title is saved to add to the table
     }
 
+    StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+        @Override
+        public String toString(LocalDate object) {
+            if (dueDateCalendarField != null) {
+                return dateFormatter.format(dueDateCalendarField.getValue());
+            } else {
+                return "";
+            }
+        }
+
+        @Override
+        public LocalDate fromString(String string) {
+            if (string != null && !string.isEmpty()) {
+                return LocalDate.parse(string, dateFormatter);
+            } else {
+                return null;
+            }
+        }
+        };
+
     @FXML
     void initialize() {
         assert taskDescriptionField != null : "fx:id=\"taskDescriptionField\" was not injected: check your FXML file 'TaskController.fxml'.";
@@ -151,5 +177,7 @@ public class TaskController{
         assert addItemButton != null : "fx:id=\"addItemButton\" was not injected: check your FXML file 'TaskController.fxml'.";
         assert dueDateCalendarField != null : "fx:id=\"dueDateCalendarField\" was not injected: check your FXML file 'TaskController.fxml'.";
         assert titleTextField != null : "fx:id=\"titleTextField\" was not injected: check your FXML file 'TaskController.fxml'.";
+
+        dueDateCalendarField.setConverter(converter);
     }
 }
