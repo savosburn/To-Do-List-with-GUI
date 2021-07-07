@@ -83,9 +83,10 @@ public class ToDoListController {
     private DatePicker dueDatePicker;
 
     @FXML
-    public void addTaskButtonPressed(ActionEvent event) {
+    public void addTaskButtonPressed() {
 
         ToDoList td = new ToDoList();
+        System.out.print("Task added.\n");
 
         // Get user input and add it to the table
         setItems(td);
@@ -98,22 +99,33 @@ public class ToDoListController {
     private void setItems(ToDoList td) {
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
-        td.setDueDate(dueDatePicker.getValue().toString());
+        td.setDueDate(catchNullPointerDueDate());
     }
 
     private void clearTextFields() {
         taskTitleTextField.clear();
         taskDescriptionTextField.clear();
         dueDatePicker.getEditor().clear();
+        dueDatePicker.setValue(null);
+    }
+
+    public String catchNullPointerDueDate() {
+        try {
+            dueDatePicker.getValue();
+
+            return dueDatePicker.getValue().toString();
+        } catch (NullPointerException e) {
+            return " ";
+        }
     }
 
     @FXML
     public String dueDatePicked() {
 
         // Signify that a date was picked
-        String output = dueDatePicker.getValue().toString();
+        String output = catchNullPointerDueDate();
         System.out.print(output + " picked.\n");
-        return output;
+        return null;
 
     }
 
@@ -203,13 +215,16 @@ public class ToDoListController {
         assert viewAllTasksButton != null : "fx:id=\"viewAllTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewCompleteTasksButton != null : "fx:id=\"viewCompleteTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewIncompleteTasksButton != null : "fx:id=\"viewIncompleteTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+        assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskTable != null : "fx:id=\"taskTable\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert markCompletedColumn != null : "fx:id=\"markCompletedColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskTitleColumn != null : "fx:id=\"taskTitleColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert descriptionColumn != null : "fx:id=\"descriptionColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert dueDateColumn != null : "fx:id=\"dueDateColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert addTaskButton != null : "fx:id=\"addTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
-        assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+        assert taskTitleTextField != null : "fx:id=\"taskTitleTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+        assert taskDescriptionTextField != null : "fx:id=\"taskDescriptionTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+        assert dueDatePicker != null : "fx:id=\"dueDatePicker\" was not injected: check your FXML file 'ToDoListController.fxml'.";
 
         // Set up the columns in the table
         // BREAK INTO SMALLER METHODS
