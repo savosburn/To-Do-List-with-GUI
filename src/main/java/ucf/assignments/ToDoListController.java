@@ -124,9 +124,12 @@ public class ToDoListController {
 
         // Signify that a date was picked
         String output = catchNullPointerDueDate();
-        System.out.print(output + " picked.\n");
-        return null;
 
+        if (!output.equals(" ")) {
+            System.out.print(output + " picked.\n");
+        }
+
+        return output;
     }
 
     // Pre-conditions:
