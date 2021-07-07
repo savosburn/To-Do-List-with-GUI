@@ -66,7 +66,6 @@ public class TaskController{
 
     @FXML
     public String getTitle() {
-
         return titleTextField.getText();
     }
 

@@ -99,27 +99,28 @@ public class ToDoListController {
     @FXML
     public void addTaskButtonPressed(ActionEvent event) {
 
-        // Scene switches from ToDoListController to TaskController
-        //System.out.print(toTaskController());
-
         ToDoList td = new ToDoList();
+
+        // Get user input and add it to the table
+        setItems(td);
+        taskTable.getItems().add(td);
+
+        // Clear the text fields
+        clearTextFields();
+    }
+
+    private void setItems(ToDoList td) {
         td.setIsCompleted(isCompletedTextField.getText());
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
         td.setDueDate(taskDueDateTextField.getText());
+    }
 
-        taskTable.getItems().add(td);
+    private void clearTextFields() {
         isCompletedTextField.clear();
         taskTitleTextField.clear();
         taskDescriptionTextField.clear();
         taskDueDateTextField.clear();
-
-
-
-
-
-
-        // Scene switches back if it's added
     }
 
     // Pre-conditions:
@@ -205,15 +206,6 @@ public class ToDoListController {
     }
 
     @FXML
-            public ObservableList<ToDoList> td() {
-
-        return FXCollections.observableArrayList(
-                new ToDoList("no", "cut grass", "chop", "3/7/19"),
-                new ToDoList("yes", "eat", "food", "2/7/19")
-        );
-    }
-
-    @FXML
     public void initialize() {
 
 
@@ -238,8 +230,6 @@ public class ToDoListController {
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
-
-        taskTable.getItems().setAll(td());
     }
 
 
