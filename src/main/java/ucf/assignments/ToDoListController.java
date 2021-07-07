@@ -8,6 +8,10 @@ package ucf.assignments;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +23,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class ToDoListController {
@@ -53,23 +58,22 @@ public class ToDoListController {
     @FXML
     private MenuItem viewIncompleteTasksButton;
 
+
+    // THIS WAS MODIFIED FROM: private TableView<?> taskTable;
     @FXML
-    private TextField titleTextField;
+    private TableView<ToDoList> taskTable;
 
     @FXML
-    private TableView<?> taskTable;
+    private TableColumn<ToDoList, String> markCompletedColumn;
 
     @FXML
-    private TableColumn<?, ?> markCompletedColumn;
+    private TableColumn<ToDoList, String> taskTitleColumn;
 
     @FXML
-    private TableColumn<?, ?> taskTitleColumn;
+    private TableColumn<ToDoList, String> descriptionColumn;
 
     @FXML
-    private TableColumn<?, ?> descriptionColumn;
-
-    @FXML
-    private TableColumn<?, ?> dueDateColumn;
+    private TableColumn<ToDoList, String> dueDateColumn;
 
     @FXML
     private Button addTaskButton;
@@ -82,10 +86,16 @@ public class ToDoListController {
 
     @FXML
     void addTaskButtonPressed(ActionEvent event) {
+
         // Scene switches from ToDoListController to TaskController
         System.out.print(toTaskController());
 
-        // User adds task
+
+
+
+
+
+
         // Scene switches back if it's added
     }
 
@@ -172,7 +182,18 @@ public class ToDoListController {
     }
 
     @FXML
-    void initialize() {
+            public ObservableList<ToDoList> td() {
+
+        return FXCollections.observableArrayList(
+                new ToDoList("no", "cut grass", "chop", "3/7/19"),
+                new ToDoList("yes", "eat", "food", "2/7/19")
+        );
+    }
+
+    @FXML
+    public void initialize() {
+
+
         assert fileMenuButton != null : "fx:id=\"fileMenuButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert saveItemsButton != null : "fx:id=\"saveItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert loadItemsButton != null : "fx:id=\"loadItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
@@ -187,5 +208,21 @@ public class ToDoListController {
         assert dueDateColumn != null : "fx:id=\"dueDateColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert addTaskButton != null : "fx:id=\"addTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+
+
+        // Set up the columns in the table
+        markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("isCompleted"));
+        taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
+        dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
+
+        taskTable.getItems().setAll(td());
     }
+
+
+
+
+
+
+
 }

@@ -21,7 +21,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ToDoListController.fxml")));
 

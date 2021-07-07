@@ -5,12 +5,112 @@
 
 package ucf.assignments;
 
-import java.util.ArrayList;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+
+import java.text.SimpleDateFormat;
 
 public class ToDoList {
 
+    private final SimpleStringProperty isCompleted;
+    private final SimpleStringProperty taskTitle;
+    private final SimpleStringProperty taskDescription;
+    private final SimpleStringProperty dueDate;
+
+    public ToDoList(String isCompleted, String taskTitle, String taskDescription, String dueDate) {
+        this.isCompleted = new SimpleStringProperty(isCompleted);
+        this.taskTitle = new SimpleStringProperty(taskTitle);
+        this.taskDescription = new SimpleStringProperty(taskDescription);
+        this.dueDate = new SimpleStringProperty(dueDate);
+    }
+
+    public String getIsCompleted() {
+        return isCompleted.get();
+    }
+
+    public void setFirstName(String completed) {
+        isCompleted.set(completed);
+    }
+
+    public String getTaskTitle() {
+        return taskTitle.get();
+    }
+
+    public void setTaskTitle(String title) {
+        taskTitle.set(title);
+    }
+
+    public String getTaskDescription() {
+        return taskDescription.get();
+    }
+
+    public void setTaskDescription(String description) {
+        taskDescription.set(description);
+    }
+
+    public String getDueDate() {
+        return dueDate.get();
+    }
+
+    public void setDueDate(String date) {
+        dueDate.set(date);
+    }
+
+
+
+
+    /*
+    public boolean isIsCompleted() {
+        return isCompleted.get();
+    }
+
+    /*
+    public SimpleBooleanProperty isCompletedProperty() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted.set(isCompleted);
+    }
+
+    public String getTaskTitle() {
+        return taskTitle.get();
+    }
+
+
+    public SimpleStringProperty taskTitleProperty() {
+        return taskTitle;
+    }
+
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle.set(taskTitle);
+    }
+
+    public String getTaskDescription() {
+        return taskDescription.get();
+    }
+
+
+    public SimpleStringProperty taskDescriptionProperty() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription.set(taskDescription);
+    }
+
+
+    public SimpleDateFormat getDueDate() {
+        return dueDate;
+    }*/
+
+
+
+
     // This definitely shouldn't be strings
     //      determine proper type later
+
+    /*
     public ArrayList<String> tasks;
 
     // Figure out proper return types for all of these
@@ -34,11 +134,12 @@ public class ToDoList {
         return null; // change return type later
     }
 
+
     public String displayTasks() {
 
         // Return a string of all the tasks currently in the arraylist
 
         return null; // change later
-    }
+    }*/
 
 }

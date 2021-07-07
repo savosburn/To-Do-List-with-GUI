@@ -8,6 +8,10 @@ package ucf.assignments;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +22,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class TaskController {
+public class TaskController{
 
     @FXML
     private ResourceBundle resources;
@@ -41,17 +45,31 @@ public class TaskController {
     @FXML
     private TextField titleTextField;
 
+
+
     @FXML
-    void addItemButtonPressed(ActionEvent event) {
+    public void addItemButtonPressed() {
         // Item title, description, and date added to table
+        //String myString = titleTextField.getText();
+
+
         // Scene switches from TaskController to ToDoListController
 
         if (toToDoListController()) {
             System.out.print(closeWithAddItemButton());
+            System.out.print(getTitle());
         }
+
 
         // add task object to list of tasks in a to do list object
     }
+
+    @FXML
+    public String getTitle() {
+
+        return titleTextField.getText();
+    }
+
 
     private String closeWithAddItemButton() {
         Stage curStage = (Stage)addItemButton.getScene().getWindow();
