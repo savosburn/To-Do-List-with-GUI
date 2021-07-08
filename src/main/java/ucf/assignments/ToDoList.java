@@ -20,26 +20,16 @@ public class ToDoList {
     String taskDescription;
     String dueDate;
 
-    public int getPlaceInList() {
-        return placeInList;
-    }
-
-    public void setPlaceInList(int placeInList) {
-        this.placeInList = placeInList;
-    }
-
-    int placeInList;
 
     public ToDoList() {
     }
 
-    public ToDoList(String taskTitle, String taskDescription, String dueDate, Integer placeInList) {
+    public ToDoList(String taskTitle, String taskDescription, String dueDate) {
         //this.isCompleted = isCompleted;
         this.isCompleted = new CheckBox();
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
         this.dueDate = dueDate;
-        this.placeInList = placeInList;
     }
 
     public CheckBox getIsCompleted() {

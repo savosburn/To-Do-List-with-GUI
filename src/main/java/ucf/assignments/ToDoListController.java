@@ -114,7 +114,7 @@ public class ToDoListController {
             System.out.print(toDoItem.dueDate + "\n");
             System.out.print(toDoItem.taskDescription + "\n");
             System.out.print(toDoItem.taskTitle + "\n");
-            System.out.print(toDoItem.placeInList + "\n");
+            //System.out.print(toDoItem.placeInList + "\n");
         }
     }
 
@@ -178,18 +178,11 @@ public class ToDoListController {
     @FXML
     public Boolean deleteTaskButtonPressed() {
 
-        // User selects row and presses delete to remove item
-        return taskTable.getItems().removeAll(
-                taskTable.getSelectionModel().getSelectedItems()
-        );
-    }
+        // Delete selected item from ObservableList
+        toDoItems.remove(taskTable.getSelectionModel().getSelectedItem());
 
-    private Boolean isSame() {
-
-
-
-
-        return (taskTable.getItems().containsAll(toDoItems));
+        // Remove selected item from gui table
+        return taskTable.getItems().removeAll(taskTable.getSelectionModel().getSelectedItems());
     }
 
     @FXML
