@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,6 +84,8 @@ public class ToDoListController {
     @FXML
     private DatePicker dueDatePicker;
 
+    ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
+
     @FXML
     public void addTaskButtonPressed() {
 
@@ -90,10 +94,28 @@ public class ToDoListController {
 
         // Get user input and add it to the table
         setItems(td);
+
+        // get original size and add one to the new size
+
+
         taskTable.getItems().add(td);
+        toDoItems.add(td);
+
+        //printList();
 
         // Clear the text fields
         clearTextFields();
+    }
+
+    // TESTING PURPOSES ONLY
+    public void printList() {
+        for (ToDoList toDoItem : toDoItems) {
+
+            System.out.print(toDoItem.dueDate + "\n");
+            System.out.print(toDoItem.taskDescription + "\n");
+            System.out.print(toDoItem.taskTitle + "\n");
+            System.out.print(toDoItem.placeInList + "\n");
+        }
     }
 
     private void setItems(ToDoList td) {
@@ -162,13 +184,20 @@ public class ToDoListController {
         );
     }
 
+    private Boolean isSame() {
+
+
+
+
+        return (taskTable.getItems().containsAll(toDoItems));
+    }
+
     @FXML
     void fileMenuButtonClicked(ActionEvent event) {
         // User clicks on file menu button
         // Drop down appears
 
         /* This method may be unnecessary */
-
     }
 
     @FXML
