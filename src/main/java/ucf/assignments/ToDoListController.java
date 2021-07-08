@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,12 +55,11 @@ public class ToDoListController {
     @FXML
     private MenuItem viewIncompleteTasksButton;
 
-    // THIS WAS MODIFIED FROM: private TableView<?> taskTable;
     @FXML
     private TableView<ToDoList> taskTable;
 
     @FXML
-    private TableColumn<ToDoList, CheckBox> markCompletedColumn;
+    private TableColumn<ToDoList, Boolean> markCompletedColumn;
 
     @FXML
     private TableColumn<ToDoList, String> taskTitleColumn;
@@ -85,6 +86,13 @@ public class ToDoListController {
     private DatePicker dueDatePicker;
 
     ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
+    FilteredList<ToDoList> filteredList = new FilteredList<>(toDoItems);
+    SortedList<ToDoList> sortedList = new SortedList<>(filteredList);
+
+
+   ObservableList<ToDoList> testingList = FXCollections.observableArrayList(
+            new ToDoList("test", "this is a test", "2020-12-01", true)
+    );
 
     @FXML
     public void addTaskButtonPressed() {
@@ -92,19 +100,20 @@ public class ToDoListController {
         ToDoList td = new ToDoList();
         System.out.print("Task added.\n");
 
-        // Get user input and add it to the table
-        setItems(td);
 
-        // get original size and add one to the new size
+        // Add user input to a toDoList object
+        setToDoItems(td);
 
+        // Get user input and add it to the table and the ObservableList : marked out next line for testing
 
-        taskTable.getItems().add(td);
+        // REMOVED THIS AND PUT IT IN THE INTIALIZE THING INSTEAD
+        //taskTable.getItems().add(td);
         toDoItems.add(td);
-
-        //printList();
 
         // Clear the text fields
         clearTextFields();
+
+        checkBoxSet(td);
     }
 
     // TESTING PURPOSES ONLY
@@ -114,15 +123,27 @@ public class ToDoListController {
             System.out.print(toDoItem.dueDate + "\n");
             System.out.print(toDoItem.taskDescription + "\n");
             System.out.print(toDoItem.taskTitle + "\n");
-            //System.out.print(toDoItem.placeInList + "\n");
+            System.out.print(toDoItem.isCompleted + "\n");
         }
     }
 
-    private void setItems(ToDoList td) {
+
+    private void setToDoItems(ToDoList td) {
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
         td.setDueDate(catchNullPointerDueDate());
+        td.setCompleted(false);
     }
+
+    private Boolean checkBoxSet(ToDoList td) {
+       try {
+           return td.checkBox.get;
+       } catch (NullPointerException e) {
+           return false;
+        }
+    }
+
+
 
     private void clearTextFields() {
         taskTitleTextField.clear();
@@ -181,8 +202,13 @@ public class ToDoListController {
         // Delete selected item from ObservableList
         toDoItems.remove(taskTable.getSelectionModel().getSelectedItem());
 
+        taskTable.refresh();
+        taskTable.setItems(toDoItems);
+
+        return true;
+
         // Remove selected item from gui table
-        return taskTable.getItems().removeAll(taskTable.getSelectionModel().getSelectedItems());
+       // return taskTable.getItems().removeAll(taskTable.getSelectionModel().getSelectedItems());
     }
 
     @FXML
@@ -216,20 +242,56 @@ public class ToDoListController {
 
     @FXML
     void viewAllTasksButtonPressed(ActionEvent event) {
-        // Default button / If user clicks on it
-        // All tasks are showed
+
+
+        taskTable.refresh();
+
+
+
+
+
+        taskTable.setItems(toDoItems);
     }
+
+    public void filterList() {
+        for (int i = 0; i < toDoItems.size(); i++) {
+            if (isChecked(toDoItems.get(i))) {
+                filteredList.add(toDoItems.get(i));
+            }
+        }
+    }
+
+
+    // Check if checkbox is checked
+    public Boolean isChecked(ToDoList td) {
+        //return td.getIsCompleted().isSelected();
+        return null;
+    }
+
+
+
 
     @FXML
     void viewCompleteTasksButtonPressed(ActionEvent event) {
         // User clicks on button
         // Only events with completed button filled are displayed
+        //taskTable.getItems().clear();
+       // taskTable.getItems().setAll(toDoItems);
+
+        filterList();
+        taskTable.refresh();
+        taskTable.setItems(filteredList);
+
+
     }
+
+    //private ObservableList<ToDoList> filterList()
 
     @FXML
     void viewIncompleteTasksButtonPressed(ActionEvent event) {
         // User clicks on button
         // Only events with completed button NOT filled are displayed
+        //taskTable.getItems().setAll(testingList);
     }
 
     @FXML
@@ -253,6 +315,7 @@ public class ToDoListController {
         assert taskDescriptionTextField != null : "fx:id=\"taskDescriptionTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert dueDatePicker != null : "fx:id=\"dueDatePicker\" was not injected: check your FXML file 'ToDoListController.fxml'.";
 
+
         // Set up the columns in the table
         // BREAK INTO SMALLER METHODS
         dueDatePicker.setConverter(new StringConverter<LocalDate>() {
@@ -275,9 +338,19 @@ public class ToDoListController {
             }
         });
 
+        // SET THE ITEMS IN HERE INSTEAD OF IN ADD
+        taskTable.setItems(toDoItems);
+
+        markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, Boolean>("isCompleted"));
         markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
+
+        printList();
+
+        //addTaskButtonPressed();
+        //taskTable.setItems(toDoItems);
     }
 }

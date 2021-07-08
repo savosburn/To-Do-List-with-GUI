@@ -5,46 +5,69 @@
 
 package ucf.assignments;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
-
-import java.text.SimpleDateFormat;
 
 public class ToDoList {
 
 
+
+
     //String isCompleted;
-    private CheckBox isCompleted;
+    //private CheckBox isCompleted;
+    CheckBox checkBox;
+    Boolean isCompleted;
     String taskTitle;
     String taskDescription;
     String dueDate;
 
 
-    public ToDoList() {
-    }
-
-    public ToDoList(String taskTitle, String taskDescription, String dueDate) {
+    public ToDoList(String taskTitle, String taskDescription, String dueDate, Boolean isCompleted) {
         //this.isCompleted = isCompleted;
-        this.isCompleted = new CheckBox();
+        //this.isCompleted = new CheckBox();
+        this.checkBox = new CheckBox();
+        this.isCompleted = isCompleted;
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
         this.dueDate = dueDate;
     }
 
+    public ToDoList() {
+
+    }
+
+    public CheckBox getCheckBox() {
+        return checkBox;
+    }
+
+    public void setCheckBox(CheckBox checkBox) {
+        this.checkBox = checkBox;
+    }
+
+    public Boolean getCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(Boolean completed) {
+        isCompleted = completed;
+    }
+
+
+    /*
     public CheckBox getIsCompleted() {
         return isCompleted;
     }
 
     public void setIsCompleted(CheckBox isCompleted) {
         this.isCompleted = isCompleted;
-    }
+    }*/
 
     public String getTaskTitle() {
         return taskTitle;
     }
 
     public void setTaskTitle(String taskTitle) {
+        //this.taskTitle = taskTitle;
         this.taskTitle = taskTitle;
     }
 
