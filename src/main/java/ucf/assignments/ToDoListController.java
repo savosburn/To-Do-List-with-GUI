@@ -168,6 +168,7 @@ public class ToDoListController {
         // Drop down appears
 
         /* This method may be unnecessary */
+
     }
 
     @FXML
@@ -184,10 +185,11 @@ public class ToDoListController {
     }
 
     @FXML
-    void sortMenuButtonClicked(ActionEvent event) {
+    public void sortMenuButtonClicked() {
         // User clicks on sort menu button
         // Drop down appears
         /* This method may be unnecessary */
+        System.out.print("Sorting menu opened.\n");
     }
 
     @FXML
