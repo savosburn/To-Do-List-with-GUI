@@ -18,20 +18,6 @@ class ToDoList {
 
 }
 
-class Task {
-    completed: boolean
-    taskTitle: string
-    taskDescription: string
-    date: datePicker?
-
-    + updateDate()
-    + updateDescription()
-    + updateTitle()
-    + isCompleted()
-
-    + toString(): see if this will be necessary
-}
-
 class ToDoListController {
     + addTaskButtonPressed(ActionEvent): add new item to existing to do list
     + toTaskController(): Switches scene to TaskController.fxml and returns a string
@@ -55,15 +41,7 @@ class ToDoListController {
 
 }
 
-class TaskController {
-    + addItemButtonPressed(ActionEvent): adds item to ToDoList and switches screen
-    - closeWithAddItemButton(): closes the TaskController.fxml scene when the addItemButton is successfully pressed
-    + taskDescriptionFieldFilled(ActionEvent): edit description of an item within an existing to do list
-    + dueDateCalendarFieldFilled(ActionEvent): edit the due date of an item within an existing to do list
-    + returnToToDOListButtonPressed(ActionEvent): switches screen to To-Do List
-    - closeWithReturnToToDoListButton(): closes the TaskController.fxml scene when the returnToToDoListButton is successfully pressed
-    + titleTextFieldFilled((ActionEvent): add title to item in to do list
-}
+
 
 
 
@@ -71,9 +49,8 @@ class TaskController {
 javafx.Application <|- App
 App *--> ToDoListController
 App *--> ToDoList
-ToDoListController *--> TaskController
-ToDoList *--> Task
+
 ToDoList - ToDoListController
-Task - TaskController
+
 
 @enduml

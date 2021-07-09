@@ -5,19 +5,14 @@
 
 package ucf.assignments;
 
-import java.awt.event.KeyEvent;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,10 +22,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -180,20 +177,17 @@ public class ToDoListController {
     }
 
     // Pre-conditions:
-    // Post-conditions: Switches scene to TaskController.fxml and returns a string
-    public String toTaskController() {
+    // Post-conditions: Switches scene to InvalidDateController.fxml and returns a string
+    public String toInvalidDateController() {
         try {
-            Stage curStage = (Stage)addTaskButton.getScene().getWindow();
-            curStage.close();
-
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("TaskController.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidDateController.fxml")));
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("New Task");
+            stage.setTitle("Invalid Date");
             stage.show();
 
-            return "Scene switched to TaskController.fxml\n";
+            return "Scene switched to InvalidDateController.fxml\n";
         } catch(Exception e) {
 
             return "Scene switch unsuccessful.\n";
@@ -412,6 +406,8 @@ public class ToDoListController {
                 if (!result) {
                     System.out.print("Invalid format.\n");
                     tdl.setDueDate(current);
+
+                    toInvalidDateController();
                 } else {
                     System.out.print("valid format");
                     tdl.setDueDate(newDate);

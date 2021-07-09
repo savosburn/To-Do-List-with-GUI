@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="247.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidDateController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="247.0" prefWidth="423.0" style="-fx-background-color: #F08080;">
+         <children>
+            <Text fill="WHITE" layoutX="92.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Input">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="93.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter date in the format:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#fcf8f8" layoutX="158.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YYYY-MM-DD">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <AnchorPane layoutX="-1.0" prefHeight="21.0" prefWidth="424.0" style="-fx-background-color: #CD5C5C;" />
+            <Button fx:id="okButton" layoutX="170.0" layoutY="174.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #ffffff;" text="OK" textFill="LIGHTCORAL">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="-1.0" layoutY="233.0" prefHeight="21.0" prefWidth="424.0" style="-fx-background-color: #CD5C5C;" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
