@@ -87,12 +87,6 @@ public class ToDoListController {
 
     ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
     ObservableList<ToDoList> filteredList = FXCollections.observableArrayList();
-    SortedList<ToDoList> sortedList = new SortedList<>(filteredList);
-
-
-   ObservableList<ToDoList> testingList = FXCollections.observableArrayList(
-            new ToDoList("test", "this is a test", "2020-12-01", true)
-    );
 
     @FXML
     public void addTaskButtonPressed() {
@@ -227,7 +221,7 @@ public class ToDoListController {
     }
 
     @FXML
-    void viewAllTasksButtonPressed(ActionEvent event) {
+    public void viewAllTasksButtonPressed(ActionEvent event) {
 
         filteredList.clear();
 
@@ -330,9 +324,7 @@ public class ToDoListController {
         taskTable.setItems(toDoItems);
 
 
-        markCompletedColumn.setCellValueFactory(
-                param -> param.getValue().completedProperty()
-        );
+        markCompletedColumn.setCellValueFactory(param -> param.getValue().completedProperty());
         markCompletedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(markCompletedColumn));
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
