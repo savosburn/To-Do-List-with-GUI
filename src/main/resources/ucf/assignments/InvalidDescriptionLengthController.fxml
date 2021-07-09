@@ -6,39 +6,44 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InvalidDescriptionLengthController">
-   <children>
-      <AnchorPane layoutX="-5.0" layoutY="-4.0" prefHeight="255.0" prefWidth="423.0" style="-fx-background-color: #F08080;">
-         <children>
-            <Text fill="WHITE" layoutX="46.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Description">
-               <font>
-                  <Font name="System Bold" size="40.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="59.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your description is too long or too short.">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Text>
-            <Text fill="#fcf8f8" layoutX="89.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please re-enter your description.">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Text>
-            <AnchorPane layoutX="-1.0" prefHeight="22.0" prefWidth="426.0" style="-fx-background-color: #CD5C5C;" />
-            <Button fx:id="okButton" layoutX="170.0" layoutY="174.0" mnemonicParsing="false" onAction="#okButtonPressed" prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #ffffff;" text="OK" textFill="LIGHTCORAL">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <AnchorPane layoutX="-1.0" layoutY="233.0" prefHeight="22.0" prefWidth="426.0" style="-fx-background-color: #CD5C5C;" />
-            <AnchorPane layoutY="11.0" prefHeight="11.0" prefWidth="426.0" style="-fx-background-color: #ffffff;" />
-            <AnchorPane layoutX="1.0" layoutY="227.0" prefHeight="11.0" prefWidth="426.0" style="-fx-background-color: #ffffff;" />
-         </children>
-      </AnchorPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0"
+            prefWidth="418.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.InvalidDescriptionLengthController">
+   <AnchorPane layoutX="-5.0" layoutY="-4.0" prefHeight="255.0" prefWidth="423.0"
+               style="-fx-background-color: #F08080;">
+      <Text fill="WHITE" layoutX="46.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Invalid Description">
+         <font>
+            <Font name="System Bold" size="40.0"/>
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="59.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Your description is too long or too short.">
+         <font>
+            <Font name="System Bold" size="16.0"/>
+         </font>
+      </Text>
+      <Text fill="#fcf8f8" layoutX="89.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Please re-enter your description.">
+         <font>
+            <Font name="System Bold" size="16.0"/>
+         </font>
+      </Text>
+      <AnchorPane layoutX="-1.0" prefHeight="22.0" prefWidth="426.0" style="-fx-background-color: #CD5C5C;"/>
+      <Button fx:id="okButton" layoutX="170.0" layoutY="174.0" mnemonicParsing="false" onAction="#okButtonPressed"
+              prefHeight="40.0" prefWidth="82.0" style="-fx-background-color: #ffffff;" text="OK"
+              textFill="LIGHTCORAL">
+         <font>
+            <Font name="System Bold" size="17.0"/>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND"/>
+         </cursor>
+      </Button>
+      <AnchorPane layoutX="-1.0" layoutY="233.0" prefHeight="22.0" prefWidth="426.0"
+                  style="-fx-background-color: #CD5C5C;"/>
+      <AnchorPane layoutY="11.0" prefHeight="11.0" prefWidth="426.0" style="-fx-background-color: #ffffff;"/>
+      <AnchorPane layoutX="1.0" layoutY="227.0" prefHeight="11.0" prefWidth="426.0"
+                  style="-fx-background-color: #ffffff;"/>
+   </AnchorPane>
 </AnchorPane>

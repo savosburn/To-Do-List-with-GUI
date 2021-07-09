@@ -1,7 +1,7 @@
 package ucf.assignments;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+// import java.net.URL;
+// import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,17 +9,18 @@ import javafx.stage.Stage;
 
 public class InvalidDescriptionLengthController {
 
+    /*
     @FXML
     private ResourceBundle resources;
 
     @FXML
-    private URL location;
+    private URL location; */
 
     @FXML
     private Button okButton;
 
     @FXML
-    public String okButtonPressed(ActionEvent event) {
+    public String okButtonPressed() {
         try {
             Stage curStage = (Stage)okButton.getScene().getWindow();
             curStage.close();
@@ -35,7 +36,7 @@ public class InvalidDescriptionLengthController {
 
     @FXML
     void initialize() {
-        assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file 'InvalidDescriptionLengthController.fxml'.";
 
+        assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file 'InvalidDescriptionLengthController.fxml'.";
     }
 }

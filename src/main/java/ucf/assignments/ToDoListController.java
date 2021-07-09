@@ -154,11 +154,9 @@ public class ToDoListController {
         }
     }
 
-
     private Boolean setToDoItems(ToDoList td) {
 
         // Only do this if the description length is correct
-        // Make method return a boolean
         if (checkDescriptionLength()) {
             td.setTaskTitle(taskTitleTextField.getText());
             td.setTaskDescription(taskDescriptionTextField.getText());
