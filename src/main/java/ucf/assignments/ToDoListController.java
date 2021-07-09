@@ -11,8 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,7 +24,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 public class ToDoListController {
@@ -89,7 +86,7 @@ public class ToDoListController {
     private DatePicker dueDatePicker;
 
     ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
-    FilteredList<ToDoList> filteredList = new FilteredList<>(toDoItems);
+    ObservableList<ToDoList> filteredList = FXCollections.observableArrayList();
     SortedList<ToDoList> sortedList = new SortedList<>(filteredList);
 
 
@@ -103,34 +100,18 @@ public class ToDoListController {
         ToDoList td = new ToDoList();
         System.out.print("Task added.\n");
 
-
         // Add user input to a toDoList object
         setToDoItems(td);
 
-        // Get user input and add it to the table and the ObservableList : marked out next line for testing
-
-        // REMOVED THIS AND PUT IT IN THE INTIALIZE THING INSTEAD
-        //taskTable.getItems().add(td);
+        // Get user input and add it to the table and the ObservableList
         toDoItems.add(td);
 
         // Clear the text fields
         clearTextFields();
 
-       //Boolean bool =  checkBoxSet(td);
-        //checking();
-
+        // TESTING
         printList();
     }
-
-
-    /*
-    public void reset() {
-        for (int i = 0; i < toDoItems.size(); i++) {
-            if (markCompletedColumn.) {
-                toDoItems.get(i).setIsCompleted(true);
-            }
-        }
-    }*/
 
     // TESTING PURPOSES ONLY
     public void printList() {
@@ -149,32 +130,7 @@ public class ToDoListController {
         td.setTaskDescription(taskDescriptionTextField.getText());
         td.setDueDate(catchNullPointerDueDate());
         td.setIsCompleted(false);
-       // td.setCompleted(checkBoxSet(td));
     }
-
-    /*
-    private void checking () {
-        for (ToDoList toDoItem : toDoItems) {
-            if (checkBoxSet(toDoItem)) {
-                toDoItem.isCompleted = true;
-            }
-        }
-    }
-
-
-    private Boolean checkBoxSet(ToDoList td) {
-
-       try {
-           if (td.checkBox.isSelected() && !td.checkBox.isIndeterminate()) {
-               return true;
-           }
-
-           return false;
-        } catch (NullPointerException e) {
-           return false;
-        }
-    }*/
-
 
 
     private void clearTextFields() {
@@ -234,13 +190,11 @@ public class ToDoListController {
         // Delete selected item from ObservableList
         toDoItems.remove(taskTable.getSelectionModel().getSelectedItem());
 
+        // Remove selected item from gui table
         taskTable.refresh();
         taskTable.setItems(toDoItems);
 
         return true;
-
-        // Remove selected item from gui table
-       // return taskTable.getItems().removeAll(taskTable.getSelectionModel().getSelectedItems());
     }
 
     @FXML
@@ -275,49 +229,39 @@ public class ToDoListController {
     @FXML
     void viewAllTasksButtonPressed(ActionEvent event) {
 
+        filteredList.clear();
 
         taskTable.refresh();
-
-
-
-
 
         taskTable.setItems(toDoItems);
     }
 
     public void filterList() {
-        for (int i = 0; i < toDoItems.size(); i++) {
-            if (isChecked(toDoItems.get(i))) {
-                filteredList.add(toDoItems.get(i));
+        for (ToDoList toDoItem : toDoItems) {
+            if (isChecked(toDoItem)) {
+                filteredList.add(toDoItem);
             }
         }
-    }
 
+        printList();
+    }
 
     // Check if checkbox is checked
     public Boolean isChecked(ToDoList td) {
-        //return td.getIsCompleted().isSelected();
-        return null;
+        return td.isCompleted();
     }
-
-
-
 
     @FXML
     void viewCompleteTasksButtonPressed(ActionEvent event) {
         // User clicks on button
         // Only events with completed button filled are displayed
-        //taskTable.getItems().clear();
-       // taskTable.getItems().setAll(toDoItems);
 
-        filterList();
+       filterList();
+//
         taskTable.refresh();
+//
         taskTable.setItems(filteredList);
-
-
     }
-
-    //private ObservableList<ToDoList> filterList()
 
     @FXML
     void viewIncompleteTasksButtonPressed(ActionEvent event) {
@@ -370,66 +314,19 @@ public class ToDoListController {
             }
         });
 
-        // SET THE ITEMS IN HERE INSTEAD OF IN ADD
+        // Set the items
         taskTable.setItems(toDoItems);
-
-        /*
-         markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<ToDoList, Boolean>()
-         {
-             public void updateItem(boolean check, boolean empty) {
-                 super.updateItem(check, empty);
-                 try {
-                     CheckBox box = new CheckBox();
-                     BooleanProperty checked = (BooleanProperty) column.getCellObservableValue(getIndex());
-                     box.setSelected(checked.get());
-                     box.selectedProperty().bindBidirectional(checked);
-                     setGraphic(box);
-                 } catch (NullPointerException e) {
-                     setGraphic(null);
-                 }
-             }
-         });
-        //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, Boolean>("isCompleted"));
-
-        /*
-        markCompletedColumn.setCellFactory(column -> new TableCell<ToDoList, Boolean>(){
-            public void updateItem(boolean check, boolean empty) {
-                super.updateItem(check, empty);
-                try {
-                    CheckBox box = new CheckBox();
-                    BooleanProperty checked = (BooleanProperty) column.getCellObservableValue(getIndex());
-                    box.setSelected(checked.get());
-                    box.selectedProperty().bindBidirectional(checked);
-                    setGraphic(box);
-                } catch (NullPointerException e) {
-                    setGraphic(null);
-                }
-            }
-        });*/
-        //taskTable.getColumns().add(markCompletedColumn);
-
 
 
         markCompletedColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<ToDoList, Boolean>, ObservableValue<Boolean>>() {
-                    @Override
-                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<ToDoList, Boolean> param) {
-                        return param.getValue().completedProperty();
-                    }
-                }
+                param -> param.getValue().completedProperty()
         );
         markCompletedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(markCompletedColumn));
-        //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, Boolean>("isCompleted"));
-
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
 
-
-
+        // TESTING
         printList();
-
-        //addTaskButtonPressed();
-        //taskTable.setItems(toDoItems);
     }
 }

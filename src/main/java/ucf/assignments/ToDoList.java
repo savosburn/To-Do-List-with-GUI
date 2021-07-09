@@ -10,9 +10,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 public class ToDoList {
 
-    //String isCompleted;
-    //private CheckBox isCompleted;
-   // CheckBox checkBox;
     public BooleanProperty isCompleted = new SimpleBooleanProperty(false);
     String taskTitle;
     String taskDescription;
@@ -20,9 +17,7 @@ public class ToDoList {
 
 
     public ToDoList(String taskTitle, String taskDescription, String dueDate, Boolean isCompleted) {
-        //this.isCompleted = isCompleted;
-        //this.isCompleted = new CheckBox();
-        //this.checkBox = new CheckBox();
+
         this.isCompleted = new SimpleBooleanProperty(isCompleted);
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
@@ -44,37 +39,6 @@ public class ToDoList {
     public void setIsCompleted(boolean value) {
         this.isCompleted.set(value);
     }
-
-    //public BooleanProperty checkProperty() {return isCompleted;}
-
-
-
-    /*
-    public CheckBox getCheckBox() {
-        return checkBox;
-    }
-
-    public void setCheckBox(CheckBox checkBox) {
-        this.checkBox = checkBox;
-    }
-
-    public Boolean getCompleted() {
-        return isCompleted;
-    }
-
-    public void setCompleted(Boolean completed) {
-        isCompleted = completed;
-    }
-
-
-    /*
-    public CheckBox getIsCompleted() {
-        return isCompleted;
-    }
-
-    public void setIsCompleted(CheckBox isCompleted) {
-        this.isCompleted = isCompleted;
-    }*/
 
     public String getTaskTitle() {
         return taskTitle;
@@ -100,10 +64,6 @@ public class ToDoList {
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
-
-
-
-
 
 
 
