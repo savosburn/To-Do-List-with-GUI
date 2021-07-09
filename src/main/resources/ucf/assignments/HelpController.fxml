@@ -22,5 +22,10 @@
             </Text>
          </children>
       </AnchorPane>
+      <Text fill="INDIANRED" layoutX="230.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This To Do List application is dedicated to Rey.">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

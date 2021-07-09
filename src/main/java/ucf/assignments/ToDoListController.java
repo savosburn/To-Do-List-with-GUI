@@ -5,12 +5,19 @@
 
 package ucf.assignments;
 
+import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.MonthDay;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +30,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -358,6 +366,8 @@ public class ToDoListController {
         markCompletedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(markCompletedColumn));
 
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
+
+        /*
         taskTitleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         taskTitleColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
             @Override
@@ -365,7 +375,7 @@ public class ToDoListController {
                 ToDoList list = event.getRowValue();
                 list.setTaskTitle(event.getNewValue());
             }
-        });
+        });*/
 
         taskTable.refresh();
         taskTable.setItems(toDoItems);
@@ -384,28 +394,34 @@ public class ToDoListController {
         taskTable.setItems(toDoItems);
 
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
-        dueDateColumn.setCellFactory(D);
+        dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         dueDateColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
-                DatePicker dp = new DatePicker();
                 ToDoList tdl = event.getRowValue();
 
+                String current = tdl.dueDate;
+                String newDate = event.getNewValue();
 
+                String regex = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
+                Pattern pt = Pattern.compile(regex);
+                Matcher mt = pt.matcher(newDate);
 
-                dp.setOnAction((e) -> {
+                boolean result = mt.matches();
 
-                    System.out.print("date added.\n");
-                    //dp.getValue();
+                if (!result) {
+                    System.out.print("Invalid format.\n");
+                    tdl.setDueDate(current);
+                } else {
+                    System.out.print("valid format");
+                    tdl.setDueDate(newDate);
+                }
 
-                    tdl.setDueDate(event.getNewValue());
+                taskTable.refresh();
+                taskTable.setItems(toDoItems);
 
-                });
+                printList();
             }
         });
-
-
-        // TESTING
-        printList();
     }
 }
