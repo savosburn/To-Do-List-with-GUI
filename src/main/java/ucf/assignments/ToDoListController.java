@@ -106,17 +106,41 @@ public class ToDoListController {
         System.out.print("Task added.\n");
 
         // Add user input to a toDoList object
-        setToDoItems(td);
+        Boolean isSet = setToDoItems(td);
 
         // Only do this if setToDoItems is true
         // Get user input and add it to the table and the ObservableList
-        toDoItems.add(td);
+
+        if (isSet) {
+            toDoItems.add(td);
+            System.out.print("items added.\n");
+        } else {
+            toInvalidDescriptionController();
+            System.out.print("items not added.\n");
+        }
 
         // Clear the text fields
         clearTextFields();
 
         // TESTING
         printList();
+    }
+
+    // Post-conditions: Switches scene to InvalidDateController.fxml and returns a string
+    public String toInvalidDescriptionController() {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidDescriptionLengthController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Invalid Description");
+            stage.show();
+
+            return "Scene switched to InvalidDateController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
     }
 
     // TESTING PURPOSES ONLY
@@ -131,14 +155,20 @@ public class ToDoListController {
     }
 
 
-    private void setToDoItems(ToDoList td) {
+    private Boolean setToDoItems(ToDoList td) {
 
         // Only do this if the description length is correct
         // Make method return a boolean
-        td.setTaskTitle(taskTitleTextField.getText());
-        td.setTaskDescription(taskDescriptionTextField.getText());
-        td.setDueDate(catchNullPointerDueDate());
-        td.setIsCompleted(false);
+        if (checkDescriptionLength()) {
+            td.setTaskTitle(taskTitleTextField.getText());
+            td.setTaskDescription(taskDescriptionTextField.getText());
+            td.setDueDate(catchNullPointerDueDate());
+            td.setIsCompleted(false);
+
+            return true;
+        }
+
+        return false;
     }
 
     private Boolean checkDescriptionLength() {
