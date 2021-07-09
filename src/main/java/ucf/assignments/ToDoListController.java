@@ -198,7 +198,7 @@ public class ToDoListController {
     }
 
     @FXML
-    public void clearListButtonPressed(ActionEvent event) {
+    public void clearListButtonPressed() {
 
         System.out.print("ClearListButton pressed.\n");
 
@@ -206,7 +206,6 @@ public class ToDoListController {
 
         taskTable.refresh();
         taskTable.setItems(toDoItems);
-
     }
 
     @FXML
