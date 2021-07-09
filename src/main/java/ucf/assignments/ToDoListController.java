@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -103,6 +105,7 @@ public class ToDoListController {
         // Add user input to a toDoList object
         setToDoItems(td);
 
+        // Only do this if setToDoItems is true
         // Get user input and add it to the table and the ObservableList
         toDoItems.add(td);
 
@@ -126,10 +129,17 @@ public class ToDoListController {
 
 
     private void setToDoItems(ToDoList td) {
+
+        // Only do this if the description length is correct
+        // Make method return a boolean
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
         td.setDueDate(catchNullPointerDueDate());
         td.setIsCompleted(false);
+    }
+
+    private Boolean checkDescriptionLength() {
+        return (taskDescriptionTextField.getText().length() > 1 && taskDescriptionTextField.getText().length() < 256);
     }
 
 
@@ -348,8 +358,33 @@ public class ToDoListController {
 
         markCompletedColumn.setCellValueFactory(param -> param.getValue().completedProperty());
         markCompletedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(markCompletedColumn));
+
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
+        taskTitleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        taskTitleColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
+                ToDoList list = event.getRowValue();
+                list.setTaskTitle(event.getNewValue());
+            }
+        });
+
+        taskTable.refresh();
+        taskTable.setItems(toDoItems);
+
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
+        descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
+                ToDoList tdl = event.getRowValue();
+                tdl.setTaskDescription(event.getNewValue());
+            }
+        });
+
+        taskTable.refresh();
+        taskTable.setItems(toDoItems);
+
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
 
         // TESTING
