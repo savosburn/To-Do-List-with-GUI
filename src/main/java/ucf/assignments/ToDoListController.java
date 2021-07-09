@@ -35,6 +35,9 @@ public class ToDoListController {
     private URL location;
 
     @FXML
+    private Button helpButton;
+
+    @FXML
     private MenuButton fileMenuButton;
 
     @FXML
@@ -84,6 +87,9 @@ public class ToDoListController {
 
     @FXML
     private DatePicker dueDatePicker;
+
+    @FXML
+    private Button clearListButton;
 
     ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
     ObservableList<ToDoList> filteredList = FXCollections.observableArrayList();
@@ -189,6 +195,23 @@ public class ToDoListController {
         taskTable.setItems(toDoItems);
 
         return true;
+    }
+
+    @FXML
+    public void clearListButtonPressed(ActionEvent event) {
+
+        System.out.print("ClearListButton pressed.\n");
+
+        toDoItems.clear();
+
+        taskTable.refresh();
+        taskTable.setItems(toDoItems);
+
+    }
+
+    @FXML
+    void helpButtonPressed(ActionEvent event) {
+
     }
 
     @FXML
