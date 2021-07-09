@@ -41,14 +41,14 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </MenuButton>
-                <MenuButton fx:id="sortMenuButton" layoutX="497.0" layoutY="15.0" mnemonicParsing="false" onAction="#sortMenuButtonClicked" prefHeight="37.0" prefWidth="124.0" style="-fx-background-color: #CD5C5C;" text="Sort" textFill="WHITE">
+                <MenuButton fx:id="sortMenuButton" layoutX="507.0" layoutY="16.0" mnemonicParsing="false" onAction="#sortMenuButtonClicked" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #CD5C5C;" text="Sort" textFill="WHITE">
                     <items>
                         <MenuItem fx:id="viewAllTasksButton" mnemonicParsing="false" onAction="#viewAllTasksButtonPressed" text="All Tasks" />
                         <MenuItem fx:id="viewCompleteTasksButton" mnemonicParsing="false" onAction="#viewCompleteTasksButtonPressed" text="Complete Tasks" />
                         <MenuItem fx:id="viewIncompleteTasksButton" mnemonicParsing="false" onAction="#viewIncompleteTasksButtonPressed" text="Incomplete Tasks" />
                     </items>
                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="17.0" />
                     </font>
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -60,8 +60,8 @@
             <columns>
                 <TableColumn fx:id="markCompletedColumn" prefWidth="142.40002727508545" text="Completed" />
                 <TableColumn fx:id="taskTitleColumn" prefWidth="187.99998474121094" text="Task" />
-                <TableColumn fx:id="descriptionColumn" prefWidth="372.0" text="Description" />
-                <TableColumn fx:id="dueDateColumn" prefWidth="227.20000000000005" text="Due date" />
+                <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="388.80010986328125" text="Description" />
+                <TableColumn fx:id="dueDateColumn" maxWidth="150.0" prefWidth="211.199951171875" text="Due date" />
             </columns>
             <cursor>
                 <Cursor fx:constant="HAND" />

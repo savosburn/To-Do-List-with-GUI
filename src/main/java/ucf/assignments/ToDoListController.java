@@ -13,8 +13,6 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -386,6 +384,26 @@ public class ToDoListController {
         taskTable.setItems(toDoItems);
 
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
+        dueDateColumn.setCellFactory(D);
+        dueDateColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
+                DatePicker dp = new DatePicker();
+                ToDoList tdl = event.getRowValue();
+
+
+
+                dp.setOnAction((e) -> {
+
+                    System.out.print("date added.\n");
+                    //dp.getValue();
+
+                    tdl.setDueDate(event.getNewValue());
+
+                });
+            }
+        });
+
 
         // TESTING
         printList();
