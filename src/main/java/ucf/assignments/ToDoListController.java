@@ -255,11 +255,10 @@ public class ToDoListController {
     void viewCompleteTasksButtonPressed(ActionEvent event) {
         // User clicks on button
         // Only events with completed button filled are displayed
+        filteredList.clear();
 
-       filterList();
-//
+        filterList();
         taskTable.refresh();
-//
         taskTable.setItems(filteredList);
     }
 
@@ -267,7 +266,20 @@ public class ToDoListController {
     void viewIncompleteTasksButtonPressed(ActionEvent event) {
         // User clicks on button
         // Only events with completed button NOT filled are displayed
-        //taskTable.getItems().setAll(testingList);
+        filteredList.clear();
+        filterIncompleteList();
+        taskTable.refresh();
+        taskTable.setItems(filteredList);
+    }
+
+    public void filterIncompleteList() {
+        for (ToDoList toDoItem : toDoItems) {
+            if (!isChecked(toDoItem)) {
+                filteredList.add(toDoItem);
+            }
+        }
+
+        printList();
     }
 
     @FXML
