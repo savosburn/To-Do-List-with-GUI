@@ -5,18 +5,15 @@
 
 package ucf.assignments;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.CheckBox;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class ToDoList {
 
-
-
-
     //String isCompleted;
     //private CheckBox isCompleted;
-    CheckBox checkBox;
-    Boolean isCompleted;
+   // CheckBox checkBox;
+    public BooleanProperty isCompleted = new SimpleBooleanProperty(false);
     String taskTitle;
     String taskDescription;
     String dueDate;
@@ -25,8 +22,8 @@ public class ToDoList {
     public ToDoList(String taskTitle, String taskDescription, String dueDate, Boolean isCompleted) {
         //this.isCompleted = isCompleted;
         //this.isCompleted = new CheckBox();
-        this.checkBox = new CheckBox();
-        this.isCompleted = isCompleted;
+        //this.checkBox = new CheckBox();
+        this.isCompleted = new SimpleBooleanProperty(isCompleted);
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
         this.dueDate = dueDate;
@@ -36,6 +33,23 @@ public class ToDoList {
 
     }
 
+    public BooleanProperty completedProperty() {
+        return isCompleted;
+    }
+
+    public boolean isCompleted() {
+        return this.isCompleted.get();
+    }
+
+    public void setIsCompleted(boolean value) {
+        this.isCompleted.set(value);
+    }
+
+    //public BooleanProperty checkProperty() {return isCompleted;}
+
+
+
+    /*
     public CheckBox getCheckBox() {
         return checkBox;
     }

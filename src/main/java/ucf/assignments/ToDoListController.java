@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,6 +26,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 public class ToDoListController {
@@ -113,8 +116,21 @@ public class ToDoListController {
         // Clear the text fields
         clearTextFields();
 
-        checkBoxSet(td);
+       //Boolean bool =  checkBoxSet(td);
+        //checking();
+
+        printList();
     }
+
+
+    /*
+    public void reset() {
+        for (int i = 0; i < toDoItems.size(); i++) {
+            if (markCompletedColumn.) {
+                toDoItems.get(i).setIsCompleted(true);
+            }
+        }
+    }*/
 
     // TESTING PURPOSES ONLY
     public void printList() {
@@ -132,16 +148,32 @@ public class ToDoListController {
         td.setTaskTitle(taskTitleTextField.getText());
         td.setTaskDescription(taskDescriptionTextField.getText());
         td.setDueDate(catchNullPointerDueDate());
-        td.setCompleted(false);
+        td.setIsCompleted(false);
+       // td.setCompleted(checkBoxSet(td));
     }
 
-    private Boolean checkBoxSet(ToDoList td) {
-       try {
-           return td.checkBox.get;
-       } catch (NullPointerException e) {
-           return false;
+    /*
+    private void checking () {
+        for (ToDoList toDoItem : toDoItems) {
+            if (checkBoxSet(toDoItem)) {
+                toDoItem.isCompleted = true;
+            }
         }
     }
+
+
+    private Boolean checkBoxSet(ToDoList td) {
+
+       try {
+           if (td.checkBox.isSelected() && !td.checkBox.isIndeterminate()) {
+               return true;
+           }
+
+           return false;
+        } catch (NullPointerException e) {
+           return false;
+        }
+    }*/
 
 
 
@@ -341,12 +373,59 @@ public class ToDoListController {
         // SET THE ITEMS IN HERE INSTEAD OF IN ADD
         taskTable.setItems(toDoItems);
 
-        markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, Boolean>("isCompleted"));
-        markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<>());
+        /*
+         markCompletedColumn.setCellFactory(column -> new CheckBoxTableCell<ToDoList, Boolean>()
+         {
+             public void updateItem(boolean check, boolean empty) {
+                 super.updateItem(check, empty);
+                 try {
+                     CheckBox box = new CheckBox();
+                     BooleanProperty checked = (BooleanProperty) column.getCellObservableValue(getIndex());
+                     box.setSelected(checked.get());
+                     box.selectedProperty().bindBidirectional(checked);
+                     setGraphic(box);
+                 } catch (NullPointerException e) {
+                     setGraphic(null);
+                 }
+             }
+         });
+        //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, Boolean>("isCompleted"));
+
+        /*
+        markCompletedColumn.setCellFactory(column -> new TableCell<ToDoList, Boolean>(){
+            public void updateItem(boolean check, boolean empty) {
+                super.updateItem(check, empty);
+                try {
+                    CheckBox box = new CheckBox();
+                    BooleanProperty checked = (BooleanProperty) column.getCellObservableValue(getIndex());
+                    box.setSelected(checked.get());
+                    box.selectedProperty().bindBidirectional(checked);
+                    setGraphic(box);
+                } catch (NullPointerException e) {
+                    setGraphic(null);
+                }
+            }
+        });*/
+        //taskTable.getColumns().add(markCompletedColumn);
+
+
+
+        markCompletedColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<ToDoList, Boolean>, ObservableValue<Boolean>>() {
+                    @Override
+                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<ToDoList, Boolean> param) {
+                        return param.getValue().completedProperty();
+                    }
+                }
+        );
+        markCompletedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(markCompletedColumn));
+        //markCompletedColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, Boolean>("isCompleted"));
 
         taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
+
+
 
         printList();
 

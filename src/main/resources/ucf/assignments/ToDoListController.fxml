@@ -53,7 +53,7 @@
                 <TableColumn fx:id="markCompletedColumn" prefWidth="142.40002727508545" text="Completed" />
                 <TableColumn fx:id="taskTitleColumn" prefWidth="187.99998474121094" text="Task" />
                 <TableColumn fx:id="descriptionColumn" prefWidth="372.0" text="Description" />
-                <TableColumn fx:id="dueDateColumn" prefWidth="167.199951171875" text="Due date" />
+                <TableColumn fx:id="dueDateColumn" prefWidth="227.20000000000005" text="Due date" />
             </columns>
             <cursor>
                 <Cursor fx:constant="HAND" />
