@@ -5,15 +5,22 @@
 
 package ucf.assignments;
 
-import java.io.File;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +43,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.StringConverter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ToDoListController {
 
@@ -277,17 +286,61 @@ public class ToDoListController {
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Load To Do List");
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("textFile", "*.txt"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text File", "*.txt"));
 
         try {
             File file = fileChooser.showOpenDialog(stage);
-            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directoryfor the next time it opens
+            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directory for the next time it opens
+
+            toDoItems.clear();
+
             // TODO load the file
+            loadItems(file);
         } catch (Exception ex) {
             System.out.print("error\n");
         }
 
     }
+
+    public void loadItems(File file) {
+        ArrayList<String> items = new ArrayList<>();
+
+        try {
+            File myFile = new File(file.getName());
+            Scanner scanner = new Scanner(myFile);
+
+            while (scanner.hasNextLine()) {
+                items.add(scanner.nextLine());
+                System.out.print(items);
+            }
+
+            addToObservableList(items);
+
+        } catch (FileNotFoundException e) {
+            System.out.print("File not found.\n");
+        }
+
+
+    }
+
+    public void addToObservableList(ArrayList<String> items) {
+
+        for (String item : items) {
+
+            ToDoList td = new ToDoList();
+
+            String[] splitString = item.split("\\^");
+
+            td.dueDate = splitString[0];
+            td.taskTitle = splitString[1];
+            td.taskDescription = splitString[2];
+            td.isCompleted.set(splitString[3].equals("BooleanProperty [value: true]"));
+
+            toDoItems.add(td);
+        }
+
+    }
+
 
     FileChooser fileChooser = new FileChooser();
 
@@ -298,16 +351,39 @@ public class ToDoListController {
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Save To DO List");
         fileChooser.setInitialFileName("mySaveFile");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("textFile", "*.txt"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text File", "*.txt"));
 
         try {
             File file = fileChooser.showSaveDialog(stage);
             fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directoryfor the next time it opens
             // TODO save the file
+            saveList(file);
+            //toJson(file);
         } catch (Exception ex) {
             System.out.print("error\n");
         }
     }
+
+    public void saveList(File file) {
+
+        try(FileWriter writer = new FileWriter(file)) {
+
+            for (ToDoList toDoItem : toDoItems) {
+                writer.write(toDoItem.dueDate + "^");
+                writer.write(toDoItem.taskTitle + "^");
+                writer.write(toDoItem.taskDescription + "^");
+                writer.write(toDoItem.isCompleted.toString() + "^");
+                writer.write("\n");
+            }
+
+        } catch (IOException e) {
+            System.out.print("File does not exist.\n");
+        }
+    }
+
+
+
+
 
     @FXML
     public void sortMenuButtonClicked() {
@@ -396,11 +472,6 @@ public class ToDoListController {
 
 
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-
-
-
-
-
 
         // Set up the columns in the table
         // BREAK INTO SMALLER METHODS

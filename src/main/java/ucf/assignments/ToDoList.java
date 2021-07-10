@@ -11,9 +11,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class ToDoList {
 
     public BooleanProperty isCompleted = new SimpleBooleanProperty(false);
-    String taskTitle;
-    String taskDescription;
-    String dueDate;
+     String taskTitle;
+     String taskDescription;
+     String dueDate;
 
 
     public ToDoList(String taskTitle, String taskDescription, String dueDate, Boolean isCompleted) {
