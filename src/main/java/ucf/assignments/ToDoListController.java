@@ -5,6 +5,7 @@
 
 package ucf.assignments;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +29,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.StringConverter;
 
 public class ToDoListController {
@@ -95,6 +101,9 @@ public class ToDoListController {
 
     @FXML
     private Button clearListButton;
+
+    @FXML
+    private AnchorPane controller;
 
     ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
     ObservableList<ToDoList> filteredList = FXCollections.observableArrayList();
@@ -264,12 +273,40 @@ public class ToDoListController {
         // User clicks on load items
         // File menu appears for user to use
         // Loading an item automatically adds it to the end of the to-do list
+
+        Window stage = fileMenuButton.getScene().getWindow();
+        fileChooser.setTitle("Load To Do List");
+
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("textFile", "*.txt"));
+
+        try {
+            File file = fileChooser.showOpenDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directoryfor the next time it opens
+            // TODO load the file
+        } catch (Exception ex) {
+            System.out.print("error\n");
+        }
+
     }
 
+    FileChooser fileChooser = new FileChooser();
+
     @FXML
-    void saveItemsButtonPressed(ActionEvent event) {
+    public void saveItemsButtonPressed(ActionEvent event) {
         // To Do List is added to the ListsController scene
         // Scene is not switched unless user presses return button
+        Window stage = fileMenuButton.getScene().getWindow();
+        fileChooser.setTitle("Save To DO List");
+        fileChooser.setInitialFileName("mySaveFile");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("textFile", "*.txt"));
+
+        try {
+            File file = fileChooser.showSaveDialog(stage);
+            fileChooser.setInitialDirectory(file.getParentFile()); // save the chosen directoryfor the next time it opens
+            // TODO save the file
+        } catch (Exception ex) {
+            System.out.print("error\n");
+        }
     }
 
     @FXML
@@ -356,6 +393,13 @@ public class ToDoListController {
         assert taskTitleTextField != null : "fx:id=\"taskTitleTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskDescriptionTextField != null : "fx:id=\"taskDescriptionTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert dueDatePicker != null : "fx:id=\"dueDatePicker\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+
+
+
+
 
 
         // Set up the columns in the table
