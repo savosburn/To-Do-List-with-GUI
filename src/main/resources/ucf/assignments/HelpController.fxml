@@ -1,16 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpController">
    <children>
-      <ImageView fitHeight="107.0" fitWidth="521.0" layoutX="40.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="111.0" fitWidth="603.0" layoutX="70.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../../Pictures/Screenshots/Screenshot%20(139).png" />
          </image>
       </ImageView>
+      <AnchorPane prefHeight="83.0" prefWidth="744.0" style="-fx-background-color: #F08080;">
+         <children>
+            <Button fx:id="returnButton" layoutY="5.0" mnemonicParsing="false" onAction="#returnButtonPressed" style="-fx-background-color: #F08080;" text="X" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Button>
+            <Text fill="WHITE" layoutX="67.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help: Add Tasks">
+               <font>
+                  <Font name="System Bold" size="41.0" />
+               </font>
+            </Text>
+            <MenuButton layoutX="614.0" layoutY="22.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="116.0" style="-fx-background-color: #cd5c5c;" text="Go to..." textFill="WHITE">
+               <items>
+                  <MenuItem fx:id="AddTasksButton" mnemonicParsing="false" onAction="#AddTasksButtonPressed" text="Add Tasks" />
+                  <MenuItem fx:id="DeleteTasksButton" mnemonicParsing="false" onAction="#DeleteTasksButtonPressed" text="Delete Tasks" />
+                  <MenuItem fx:id="ModifyTasksButton" mnemonicParsing="false" onAction="#ModifyTasksButtonPressed" text="Modify Tasks" />
+                  <MenuItem fx:id="SortTasksButton" mnemonicParsing="false" onAction="#SortTasksButtonPressed" text="Sort Tasks" />
+                  <MenuItem fx:id="SaveLoadTasksButton" mnemonicParsing="false" onAction="#SaveLoadTasksButtonPressed" text="Save / Load Tasks" />
+               </items>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </MenuButton>
+         </children>
+      </AnchorPane>
+      <Text fill="INDIANRED" layoutX="239.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This To Do List Application is dedicated to Rey.">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="100.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓">
+         <font>
+            <Font name="System Bold" size="96.0" />
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="104.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill in the task's name, description, and due date." textAlignment="CENTER" wrappingWidth="523.3749771118164">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="129.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select &quot;+ Add Task&quot; to add task to To Do List." textAlignment="CENTER" wrappingWidth="473.0288391113281">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Text>
+      <Circle fill="LIGHTCORAL" layoutX="371.0" layoutY="454.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="LIGHTCORAL" layoutX="396.0" layoutY="454.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="LIGHTCORAL" layoutX="420.0" layoutY="454.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="LIGHTCORAL" layoutX="347.0" layoutY="454.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="INDIANRED" layoutX="322.0" layoutY="454.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
    </children>
 </AnchorPane>
