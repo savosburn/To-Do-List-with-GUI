@@ -15,12 +15,12 @@
          <children>
             <ImageView fitHeight="128.0" fitWidth="669.0" layoutX="24.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Images/HelpDeleteTasksSelectItem.png" />
+                  <Image url="@../Images/HelpDeleteTasksSelectItem.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="102.0" fitWidth="182.0" layoutX="24.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Images/HelpDeleteTasksDelete.png" />
+                  <Image url="@../Images/HelpDeleteTasksDelete.png" />
                </image>
             </ImageView>
             <Text layoutX="133.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -70,7 +70,7 @@
             </Text>
             <ImageView fitHeight="128.0" fitWidth="124.0" layoutX="549.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Images/HelpDeleteTasksClear.png" />
+                  <Image url="@../Images/HelpDeleteTasksClear.png" />
                </image>
             </ImageView>
             <Text fill="INDIANRED" layoutX="466.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="→">

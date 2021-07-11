@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="111.0" fitWidth="603.0" layoutX="70.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Images/HelpAddTasks.png" />
+            <Image url="@../Images/HelpAddTasks.png" />
          </image>
       </ImageView>
       <AnchorPane prefHeight="83.0" prefWidth="744.0" style="-fx-background-color: #F08080;">
