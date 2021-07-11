@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,12 +15,12 @@
          <children>
             <ImageView fitHeight="128.0" fitWidth="669.0" layoutX="24.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Pictures/Screenshots/Screenshot%20(146).png" />
+                  <Image url="@../../Images/HelpDeleteTasksSelectItem.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="102.0" fitWidth="182.0" layoutX="24.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Pictures/Screenshots/Screenshot%20(140).png" />
+                  <Image url="@../../Images/HelpDeleteTasksDelete.png" />
                </image>
             </ImageView>
             <Text layoutX="133.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -38,18 +36,6 @@
                         <Font name="System Bold" size="35.0" />
                      </font>
                   </Text>
-                  <MenuButton layoutX="576.0" layoutY="13.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="116.0" style="-fx-background-color: #cd5c5c;" text="Go to..." textFill="WHITE">
-                     <items>
-                        <MenuItem fx:id="AddTasksButton" mnemonicParsing="false" onAction="#AddTasksButtonPressed" text="Add Tasks" />
-                        <MenuItem fx:id="DeleteTasksButton" mnemonicParsing="false" onAction="#DeleteTasksButtonPressed" text="Delete Tasks" />
-                        <MenuItem fx:id="ModifyTasksButton" mnemonicParsing="false" onAction="#ModifyTasksButtonPressed" text="Modify Tasks" />
-                        <MenuItem fx:id="SortTasks" mnemonicParsing="false" onAction="#SortTasksButtonPressed" text="Sort Tasks" />
-                        <MenuItem fx:id="SaveLoadTasksButton" mnemonicParsing="false" onAction="#SaveLoadTasksButtonPressed" text="Save / Load Tasks" />
-                     </items>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </MenuButton>
                </children>
             </AnchorPane>
             <Text fill="INDIANRED" layoutX="88.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select task to be deleted." textAlignment="CENTER" wrappingWidth="523.3749771118164">
@@ -84,7 +70,7 @@
             </Text>
             <ImageView fitHeight="128.0" fitWidth="124.0" layoutX="549.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Pictures/Screenshots/Screenshot%20(147).png" />
+                  <Image url="@../../Images/HelpDeleteTasksClear.png" />
                </image>
             </ImageView>
             <Text fill="INDIANRED" layoutX="466.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="→">
