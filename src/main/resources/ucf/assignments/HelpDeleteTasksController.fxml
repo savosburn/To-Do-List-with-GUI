@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpDeleteTasksController">
    <children>
       <AnchorPane layoutY="-5.0" prefHeight="464.0" prefWidth="706.0">
@@ -36,6 +35,11 @@
                         <Font name="System Bold" size="35.0" />
                      </font>
                   </Text>
+                  <Button fx:id="nextButton" layoutX="624.0" layoutY="11.0" mnemonicParsing="false" onAction="#nextButtonPressed" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Next" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <Text fill="INDIANRED" layoutX="88.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select task to be deleted." textAlignment="CENTER" wrappingWidth="523.3749771118164">
