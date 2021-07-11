@@ -24,6 +24,25 @@ class ToDoList {
 }
 
 class ToDoListController {
+    + helpButton: Button - FXML
+    + fileMenuButton: MenuButton - FXML
+    + saveItemsButton: MenuItem - FXML
+    + loadItemsButton: MenuItem - FXML
+    + sortMenuButton: MenuButton - FXML
+    + viewAllTasksButton: MenuItem - FXML
+    + viewCompleteTasksButton: MenuItem - FXML
+    + viewIncompleteTasksButton: MenuItem - FXML
+    + taskTable: TableView<ToDoList> - FXML
+    + markCompletedColumn: TableColumn<ToDoList, Boolean> - FXML
+    + taskTitleColumn: TableColumn<ToDoList, String> - FXML
+    + descriptionColumn: TableColumn<ToDoList, String> - FXML
+    + dueDateColumn: TableColumn<ToDoList, String> - FXML
+    + addTaskButton: Button - FXML
+    + deleteTaskButton: Button - FXML
+    + taskTitleTextField: TextField - FXML
+    + taskDescriptionTextField: TextField - FXML
+    + dueDatePicker: DatePicker - FXML
+
     + fileChooser: FileChooser
     + toDoItems: ObservableList<ToDoList>
     + filteredList: ObservableList<ToDoList>
@@ -35,7 +54,7 @@ class ToDoListController {
     + clearTextFields(): Clears all the fields in the GUI
     + catchNullPointerDueDate(): Returns the value of the date picker. Returns " " if the date picker was null
     + dueDatePicked(): Returns the chosen due date
-    + toInvalidDateController: Switches scene to InvalidDateController.fxml and returns a string
+    + toInvalidDateController(): Switches scene to InvalidDateController.fxml and returns a string
     + deleteTaskButtonPressed(): remove item from existing to do list
     + clearListButtonPressed(): ObservableList is cleared
     + helpButtonPressed(): Switches scene to the help controller
@@ -58,12 +77,19 @@ class ToDoListController {
 }
 
 class HelpController {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+
     + nextButtonPressed(): Scene is switched to next help screen
     + returnButtonPressed(): Scene is switched back to ToDoListController
     + initialize(): Initializes GUI components
 }
 
 class HelpDeleteTasksController {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
     + backButtonPressed(): Scene is switched to previous help screen
     + nextButtonPressed(): Scene is switched to next help scene
     + returnButtonPressed(): Scene is switched back to ToDoListController
@@ -71,6 +97,10 @@ class HelpDeleteTasksController {
 }
 
 class HelpModifyTasksController {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
     + backButtonPressed(): Scene is switched to previous help screen
     + nextButtonPressed(): Scene is switched to next help scene
     + returnButtonPressed(): Scene is switched back to ToDoListController
@@ -78,6 +108,10 @@ class HelpModifyTasksController {
 }
 
 class HelpSaveLoadTasksController {
+    + returnButton: Button - FXML
+    + nextButton: Button - FXML
+    + backButton: Button - FXML
+
     + backButtonPressed(): Scene is switched to previous help screen
     + nextButtonPressed(): Scene is switched to next help scene
     + returnButtonPressed(): Scene is switched back to ToDoListController
@@ -85,17 +119,24 @@ class HelpSaveLoadTasksController {
 }
 
 class HelpSortTasksController {
+    + returnButton: Button - FXML
+    + backButton: Button - FXML
+
     + backButtonPressed(): Scene is switched to previous help screen
     + returnButtonPressed(): Scene is switched back to ToDoListController
     + initialize(): GUI components initialized
 }
 
 class InvalidDateController {
+    + okButton: Button - FXML
+
     + okButtonPressed(): Scene is switched to ToDoList controller
     + initialize(): GUI components initialized
 }
 
 class InvalidDescriptionLengthController {
+    + okButton: Button - FXML
+
     + okButtonPressed(): Scene switches to ToDoList Controller
     + initialize(): GUI components initialized
 }
