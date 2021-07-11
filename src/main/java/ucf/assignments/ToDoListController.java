@@ -267,6 +267,27 @@ public class ToDoListController {
     @FXML
     void helpButtonPressed(ActionEvent event) {
 
+        toHelpController();
+    }
+
+    public String toHelpController() {
+        try {
+
+            Stage curStage = (Stage)helpButton.getScene().getWindow();
+            curStage.close();
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Invalid Description");
+            stage.show();
+
+            return "Scene switched to InvalidDateController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
     }
 
     @FXML
