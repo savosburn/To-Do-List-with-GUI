@@ -1,0 +1,9 @@
+2021-07-03^Write pseudocode^Make sure that the pseudocode accurately describes the coding process.^BooleanProperty [value: true]^
+2021-07-03^Create puml diagram^Keep updating this diagram as the code is updated^BooleanProperty [value: true]^
+2021-07-03^Use SceneBuilder^Create a scene for every scene necessary.^BooleanProperty [value: true]^
+2021-07-10^Code^Code the To Do List^BooleanProperty [value: true]^
+2021-07-11^Update pseudocode^Make pseudocode reflect the new code^BooleanProperty [value: true]^
+2021-07-11^Update puml diagrams^Make sure the diagrams accurately reflect the new code^BooleanProperty [value: true]^
+2021-07-11^Test classes^Test all of the methods in your classes and try not to cry^BooleanProperty [value: false]^
+2021-07-11^Copyright^Ensure that all the copyrights are in the correct place^BooleanProperty [value: false]^
+2021-07-11^Turn in project^Submit project to github and cry^BooleanProperty [value: false]^
