@@ -104,9 +104,9 @@ class InvalidDescriptionLengthController {
 
 javafx.Application <|- App
 App *--> ToDoListController
-ToDoListController *--> HelpController
-ToDoListController *--> InvalidDateController
-ToDoListController *--> InvalidDescriptionLengthController
+ToDoListController -- HelpController
+ToDoListController -- InvalidDateController
+ToDoListController -- InvalidDescriptionLengthController
 HelpController -- HelpDeleteTasksController
 HelpDeleteTasksController -- HelpModifyTasksController
 HelpModifyTasksController -- HelpSaveLoadTasksController
