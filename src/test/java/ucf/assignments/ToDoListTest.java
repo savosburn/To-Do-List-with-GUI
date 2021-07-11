@@ -14,13 +14,17 @@ class ToDoListTest {
     // Create a test list of tasks
 
     @Test
-    void addTask() {
+    public void addTask() {
         // Create a new ToDoList
         // Create a new task object
         // Add it to the array list of task objects
         // Get what should result
         // Get what actually results
         // Assert that the two are equal
+
+
+
+
     }
 
     @Test

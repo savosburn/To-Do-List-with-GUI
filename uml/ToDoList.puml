@@ -7,47 +7,111 @@ class App {
 }
 
 class ToDoList {
-    // Each to do list should be able to hold a table of tasks
-    - toDoTitle: string
-    - tasks: ArrayList<>
+    + isCompleted: BooleanProperty
+    + taskTitle: String
+    + taskDescription: dueDate
 
-    + addTask(): adds task to arrayList
-    + deleteTask(): removes task from arrayList
-    + displayTasks()
-    + updateToDoTitle(): user can rename list
-
+    + ToDoList(taskTitle, taskDescription, dueDate, isCompleted): initializes the variables in ToDoList
+    + completedProperty(): returns if the property is completed (booleanProperty)
+    + isCompleted(): returns if the property is completed (boolean)
+    + setIsCompleted(value): sets if the task is completed
+    + getTaskTitle(): gets the task title
+    + setTaskTitle(taskTitle): sets the task title
+    + getTaskDescription(): gets the task taskDescription
+    + setTaskDescription(taskDescription): sets the task description
+    + getDueDate(): gets the due date
+    + setDueDate(dueDate): sets the due date
 }
 
 class ToDoListController {
-    + addTaskButtonPressed(ActionEvent): add new item to existing to do list
-    + toTaskController(): Switches scene to TaskController.fxml and returns a string
-    + deleteTaskButtonPressed(ActionEvent): remove item from existing to do list
+    + fileChooser: FileChooser
+    + toDoItems: ObservableList<ToDoList>
+    + filteredList: ObservableList<ToDoList>
 
-    + fileMenuButtonClicked(ActionEvent):
-
-    // THIS WILL NEED TO LOAD TO DO LIST NOT ITEMS
-    + loadItemsButtonPressed(ActionEvent):
-
-    + saveItemsButtonPressed(ActionEvent): save all items in a single to do list to external storage
-    + sortMenuButtonClicked(ActionEvent)):
-           + viewAllTasksButtonPressed(ActionEvent)): display all existing items
-           + viewIncompleteTasksButtonPressed(ActionEvent)): display only the incompleted items
-           + viewCompleteTasksButtonPressed(ActionEvent): display completed items
-    + titleTextFieldClicked(ActionEvent)): edit the title of existing to do list
-    + sortByDateButtonClicked(ActionEvent): sort items by due date
-    + initialize():
-
-    + taskCompletedCheckBoxClicked(): mark an item in a to do list as complete
-
+    + addTaskButtonPressed(): add new item to existing to do list
+    + toInvalidDescriptionController(): Switches scene to InvalidDateController.fxml and returns a string
+    + setToDoItems(ToDoList): Ensures that items are set properly
+    + checkDescriptionLength(): Returns true if the description is between 1 and 256 characters
+    + clearTextFields(): Clears all the fields in the GUI
+    + catchNullPointerDueDate(): Returns the value of the date picker. Returns " " if the date picker was null
+    + dueDatePicked(): Returns the chosen due date
+    + toInvalidDateController: Switches scene to InvalidDateController.fxml and returns a string
+    + deleteTaskButtonPressed(): remove item from existing to do list
+    + clearListButtonPressed(): ObservableList is cleared
+    + helpButtonPressed(): Switches scene to the help controller
+    + toHelpController(): Switches scene to the help controller
+    + fileMenuButtonClicked(): Signifies that the file menu was opened
+    + loadItemsButtonPressed(): Opens file chooser to load items
+    + loadItems(File): Observable list is filled with info from .txt file
+    + addToObservableList(ArrayList<String>): Populates array list with data from loaded file
+    + parseStrings(String, ToDoList): Parses the items
+    + saveItemsButtonPressed(): save all items in a single to do list to external storage
+    + saveList(File): Writes the object ot the file
+    + sortMenuButtonClicked(): Signifies that the sort menu was clicked
+    + viewAllTasksButtonPressed()): display all existing items
+    + filterList(): Creates a list with only items whose isCompleted box is checked true
+    + isChecked(ToDoList): Returns state of check box
+    + viewIncompleteTasksButtonPressed(): display only the incomplete items
+    + viewCompleteTasksButtonPressed(): display completed items
+    + filterIncompleteList(): Adds only incomplete items the filtered list
+    + initialize(): GUI components initialized and table set
 }
 
+class HelpController {
+    + nextButtonPressed(): Scene is switched to next help screen
+    + returnButtonPressed(): Scene is switched back to ToDoListController
+    + initialize(): Initializes GUI components
+}
 
+class HelpDeleteTasksController {
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help scene
+    + returnButtonPressed(): Scene is switched back to ToDoListController
+    + initialize(): GUI components initialized
+}
 
+class HelpModifyTasksController {
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help scene
+    + returnButtonPressed(): Scene is switched back to ToDoListController
+    + initialize(): GUI components initialized
+}
+
+class HelpSaveLoadTasksController {
+    + backButtonPressed(): Scene is switched to previous help screen
+    + nextButtonPressed(): Scene is switched to next help scene
+    + returnButtonPressed(): Scene is switched back to ToDoListController
+    + initialize(): GUI components initialized
+}
+
+class HelpSortTasksController {
+    + backButtonPressed(): Scene is switched to previous help screen
+    + returnButtonPressed(): Scene is switched back to ToDoListController
+    + initialize(): GUI components initialized
+}
+
+class InvalidDateController {
+    + okButtonPressed(): Scene is switched to ToDoList controller
+    + initialize(): GUI components initialized
+}
+
+class InvalidDescriptionLengthController {
+    + okButtonPressed(): Scene switches to ToDoList Controller
+    + initialize(): GUI components initialized
+}
 
 
 
 javafx.Application <|- App
 App *--> ToDoListController
+ToDoListController *--> HelpController
+ToDoListController *--> InvalidDateController
+ToDoListController *--> InvalidDescriptionLengthController
+HelpController -- HelpDeleteTasksController
+HelpDeleteTasksController -- HelpModifyTasksController
+HelpModifyTasksController -- HelpSaveLoadTasksController
+HelpSaveLoadTasksController -- HelpSortTasksController
+HelpSortTasksController -- HelpController
 App *--> ToDoList
 
 ToDoList - ToDoListController

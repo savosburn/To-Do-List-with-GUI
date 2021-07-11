@@ -24,6 +24,11 @@ class ToDoListControllerTest {
     }
 
     @Test
+    public void setToDoItemsTest() {
+
+    }
+
+    @Test
     void addToDoListButtonPressed() {
         // Create a new ToDoListController
         // Create a new To Do List
