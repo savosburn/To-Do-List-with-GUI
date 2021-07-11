@@ -1,0 +1,1 @@
+2021-07-20^test^test^BooleanProperty [value: false]^2021-07-21^test 2^test 2^BooleanProperty [value: true]^2021-07-26^test 3^test 3^BooleanProperty [value: false]^
