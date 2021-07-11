@@ -273,9 +273,6 @@ public class ToDoListController {
     public String toHelpController() {
         try {
 
-            Stage curStage = (Stage)helpButton.getScene().getWindow();
-            curStage.close();
-
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpController.fxml")));
 
             Stage stage = new Stage();

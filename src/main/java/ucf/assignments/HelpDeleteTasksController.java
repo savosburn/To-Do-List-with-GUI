@@ -1,11 +1,15 @@
 package ucf.assignments;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 public class HelpDeleteTasksController {
 
@@ -19,58 +23,73 @@ public class HelpDeleteTasksController {
     private Button returnButton;
 
     @FXML
-    private MenuItem AddTasksButton;
+    private Button nextButton;
 
     @FXML
-    private MenuItem DeleteTasksButton;
+    private Button backButton;
 
     @FXML
-    private MenuItem ModifyTasksButton;
+    public String backButtonPressed(ActionEvent event) {
+        try {
+
+            Stage curStage = (Stage)backButton.getScene().getWindow();
+            curStage.close();
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Invalid Description");
+            stage.show();
+
+            return "Scene switched to InvalidDateController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
+    }
 
     @FXML
-    private MenuItem SortTasks;
+    public String nextButtonPressed(ActionEvent event) {
+        try {
 
-    @FXML
-    private MenuItem SaveLoadTasksButton;
+            Stage curStage = (Stage)nextButton.getScene().getWindow();
+            curStage.close();
 
-    @FXML
-    void AddTasksButtonPressed(ActionEvent event) {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpModifyTasksController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Invalid Description");
+            stage.show();
+
+            return "Scene switched to InvalidDateController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
 
     }
 
     @FXML
-    void DeleteTasksButtonPressed(ActionEvent event) {
+    public String returnButtonPressed(ActionEvent event) {
+        try {
+            Stage curStage = (Stage)returnButton.getScene().getWindow();
+            curStage.close();
 
-    }
+            System.out.print("Scene switched.\n");
 
-    @FXML
-    void ModifyTasksButtonPressed(ActionEvent event) {
+            return "Scene switched to ToDoListController.fxml\n";
+        } catch(Exception e) {
 
-    }
-
-    @FXML
-    void SaveLoadTasksButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    void SortTasksButtonPressed(ActionEvent event) {
-
-    }
-
-    @FXML
-    void returnButtonPressed(ActionEvent event) {
-
+            return "Scene switch unsuccessful.\n";
+        }
     }
 
     @FXML
     void initialize() {
         assert returnButton != null : "fx:id=\"returnButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
-        assert AddTasksButton != null : "fx:id=\"AddTasksButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
-        assert DeleteTasksButton != null : "fx:id=\"DeleteTasksButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
-        assert ModifyTasksButton != null : "fx:id=\"ModifyTasksButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
-        assert SortTasks != null : "fx:id=\"SortTasks\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
-        assert SaveLoadTasksButton != null : "fx:id=\"SaveLoadTasksButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
+        assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
 
     }
 }

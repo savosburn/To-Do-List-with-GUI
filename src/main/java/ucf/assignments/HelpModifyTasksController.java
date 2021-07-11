@@ -1,10 +1,15 @@
 package ucf.assignments;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class HelpModifyTasksController {
 
@@ -21,12 +26,69 @@ public class HelpModifyTasksController {
     private Button nextButton;
 
     @FXML
-    void nextButtonPressed(ActionEvent event) {
+    private Button backButton;
+
+    @FXML
+    public String backButtonPressed(ActionEvent event) {
+
+
+        try {
+
+            Stage curStage = (Stage)backButton.getScene().getWindow();
+            curStage.close();
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpDeleteTasksController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Invalid Description");
+            stage.show();
+
+            return "Scene switched to InvalidDateController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
 
     }
 
     @FXML
-    void returnButtonPressed(ActionEvent event) {
+    public String nextButtonPressed(ActionEvent event) {
+
+        try {
+
+            Stage curStage = (Stage)nextButton.getScene().getWindow();
+            curStage.close();
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpSaveLoadTasksController.fxml")));
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Invalid Description");
+            stage.show();
+
+            return "Scene switched to InvalidDateController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
+
+    }
+
+    @FXML
+    public String returnButtonPressed(ActionEvent event) {
+
+        try {
+            Stage curStage = (Stage)returnButton.getScene().getWindow();
+            curStage.close();
+
+            System.out.print("Scene switched.\n");
+
+            return "Scene switched to ToDoListController.fxml\n";
+        } catch(Exception e) {
+
+            return "Scene switch unsuccessful.\n";
+        }
 
     }
 

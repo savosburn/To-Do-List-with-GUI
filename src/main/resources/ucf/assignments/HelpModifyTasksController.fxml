@@ -27,6 +27,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="backButton" layoutX="518.0" layoutY="25.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Text fill="INDIANRED" layoutX="209.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This To Do List Application is dedicated to Rey.">

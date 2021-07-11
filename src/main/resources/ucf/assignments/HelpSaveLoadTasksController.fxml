@@ -33,6 +33,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="backButton" layoutX="546.0" layoutY="11.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Text fill="INDIANRED" layoutX="94.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the file menu, select your action (save or load). When the file-selector screen appears: " textAlignment="CENTER" wrappingWidth="523.3749771118164">
