@@ -141,8 +141,6 @@ class InvalidDescriptionLengthController {
     + initialize(): GUI components initialized
 }
 
-
-
 javafx.Application <|- App
 App *--> ToDoListController
 ToDoListController -- HelpController
@@ -154,8 +152,5 @@ HelpModifyTasksController -- HelpSaveLoadTasksController
 HelpSaveLoadTasksController -- HelpSortTasksController
 HelpSortTasksController -- HelpController
 App *--> ToDoList
-
 ToDoList - ToDoListController
-
-
 @enduml
