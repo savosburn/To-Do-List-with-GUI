@@ -12,98 +12,117 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="682.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ToDoListController">
-    <children>
-        <AnchorPane prefHeight="71.0" prefWidth="886.0" style="-fx-background-color: #F08080;">
-            <children>
-                <Text fill="WHITE" layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Do" wrappingWidth="268.2429962158203">
-                    <font>
-                        <Font name="System Bold" size="40.0" />
-                    </font>
-                </Text>
-            <Button fx:id="helpButton" layoutX="776.0" layoutY="16.0" mnemonicParsing="false" onAction="#helpButtonPressed" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: #CD5C5C;" text="? Help" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-                <MenuButton fx:id="fileMenuButton" alignment="CENTER" layoutX="628.0" layoutY="16.0" mnemonicParsing="false" onAction="#fileMenuButtonClicked" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #CD5C5C;" text="File Actions" textFill="WHITE">
-                    <items>
-                        <MenuItem fx:id="saveItemsButton" mnemonicParsing="false" onAction="#saveItemsButtonPressed" text="Save Items" />
-                        <MenuItem fx:id="loadItemsButton" mnemonicParsing="false" onAction="#loadItemsButtonPressed" text="Load Items" />
-                    </items>
-                    <font>
-                        <Font name="System Bold" size="17.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </MenuButton>
-                <MenuButton fx:id="sortMenuButton" layoutX="507.0" layoutY="16.0" mnemonicParsing="false" onAction="#sortMenuButtonClicked" prefHeight="38.0" prefWidth="112.0" style="-fx-background-color: #CD5C5C;" text="Sort" textFill="WHITE">
-                    <items>
-                        <MenuItem fx:id="viewAllTasksButton" mnemonicParsing="false" onAction="#viewAllTasksButtonPressed" text="All Tasks" />
-                        <MenuItem fx:id="viewCompleteTasksButton" mnemonicParsing="false" onAction="#viewCompleteTasksButtonPressed" text="Complete Tasks" />
-                        <MenuItem fx:id="viewIncompleteTasksButton" mnemonicParsing="false" onAction="#viewIncompleteTasksButtonPressed" text="Incomplete Tasks" />
-                    </items>
-                    <font>
-                        <Font name="System Bold" size="17.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </MenuButton>
-            </children>
-        </AnchorPane>
-        <TableView fx:id="taskTable" editable="true" layoutX="13.0" layoutY="119.0" prefHeight="456.0" prefWidth="860.0">
-            <columns>
-                <TableColumn fx:id="markCompletedColumn" prefWidth="142.40002727508545" text="Completed" />
-                <TableColumn fx:id="taskTitleColumn" prefWidth="187.99998474121094" text="Task" />
-                <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="388.80010986328125" text="Description" />
-                <TableColumn fx:id="dueDateColumn" maxWidth="150.0" prefWidth="211.199951171875" text="Due date" />
-            </columns>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-        </TableView>
-        <Button fx:id="addTaskButton" layoutX="13.0" layoutY="586.0" mnemonicParsing="false" onAction="#addTaskButtonPressed" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #F08080;" text="+ Add Task" textFill="WHITE">
+<AnchorPane prefHeight="682.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.ToDoListController">
+    <AnchorPane prefHeight="71.0" prefWidth="886.0" style="-fx-background-color: #F08080;">
+        <Text fill="WHITE" layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To Do"
+              wrappingWidth="268.2429962158203">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="40.0"/>
+            </font>
+        </Text>
+        <Button fx:id="helpButton" layoutX="776.0" layoutY="16.0" mnemonicParsing="false"
+                onAction="#helpButtonPressed" prefHeight="38.0" prefWidth="95.0"
+                style="-fx-background-color: #CD5C5C;" text="? Help" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="17.0"/>
             </font>
             <cursor>
-                <Cursor fx:constant="HAND" />
+                <Cursor fx:constant="HAND"/>
             </cursor>
         </Button>
-      <TextField fx:id="taskTitleTextField" layoutX="144.0" layoutY="585.0" prefHeight="38.0" prefWidth="530.0" promptText="Enter task name...">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <TextField fx:id="taskDescriptionTextField" layoutX="144.0" layoutY="629.0" prefHeight="38.0" prefWidth="727.0" promptText="Enter task description...">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextField>
-      <DatePicker fx:id="dueDatePicker" layoutX="682.0" layoutY="585.0" onAction="#dueDatePicked" prefHeight="38.0" prefWidth="190.0" promptText="Choose due date...">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></DatePicker>
-        <Button fx:id="deleteTaskButton" layoutX="13.0" layoutY="630.0" mnemonicParsing="false" onAction="#deleteTaskButtonPressed" prefHeight="24.0" prefWidth="124.0" style="-fx-background-color: #F08080;" text="🗑 Delete Task" textFill="WHITE">
+        <MenuButton fx:id="fileMenuButton" alignment="CENTER" layoutX="628.0" layoutY="16.0" mnemonicParsing="false"
+                    onAction="#fileMenuButtonClicked" prefHeight="38.0" prefWidth="140.0"
+                    style="-fx-background-color: #CD5C5C;" text="File Actions" textFill="WHITE">
+            <items>
+                <MenuItem fx:id="saveItemsButton" mnemonicParsing="false" onAction="#saveItemsButtonPressed"
+                          text="Save Items"/>
+                <MenuItem fx:id="loadItemsButton" mnemonicParsing="false" onAction="#loadItemsButtonPressed"
+                          text="Load Items"/>
+            </items>
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="17.0"/>
             </font>
             <cursor>
-                <Cursor fx:constant="HAND" />
+                <Cursor fx:constant="HAND"/>
             </cursor>
-        </Button>
-      <Button fx:id="clearListButton" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#clearListButtonPressed" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #F08080;" text="Clear List" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-    </children>
+        </MenuButton>
+        <MenuButton fx:id="sortMenuButton" layoutX="507.0" layoutY="16.0" mnemonicParsing="false"
+                    onAction="#sortMenuButtonClicked" prefHeight="38.0" prefWidth="112.0"
+                    style="-fx-background-color: #CD5C5C;" text="Sort" textFill="WHITE">
+            <items>
+                <MenuItem fx:id="viewAllTasksButton" mnemonicParsing="false" onAction="#viewAllTasksButtonPressed"
+                          text="All Tasks"/>
+                <MenuItem fx:id="viewCompleteTasksButton" mnemonicParsing="false"
+                          onAction="#viewCompleteTasksButtonPressed" text="Complete Tasks"/>
+                <MenuItem fx:id="viewIncompleteTasksButton" mnemonicParsing="false"
+                          onAction="#viewIncompleteTasksButtonPressed" text="Incomplete Tasks"/>
+            </items>
+            <font>
+                <Font name="System Bold" size="17.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </MenuButton>
+    </AnchorPane>
+    <TableView fx:id="taskTable" editable="true" layoutX="13.0" layoutY="119.0" prefHeight="456.0" prefWidth="860.0">
+        <columns>
+            <TableColumn fx:id="markCompletedColumn" prefWidth="142.40002727508545" text="Completed"/>
+            <TableColumn fx:id="taskTitleColumn" prefWidth="187.99998474121094" text="Task"/>
+            <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="388.80010986328125" text="Description"/>
+            <TableColumn fx:id="dueDateColumn" maxWidth="150.0" prefWidth="211.199951171875" text="Due date"/>
+        </columns>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </TableView>
+    <Button fx:id="addTaskButton" layoutX="13.0" layoutY="586.0" mnemonicParsing="false"
+            onAction="#addTaskButtonPressed" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #F08080;"
+            text="+ Add Task" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="16.0"/>
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+    <TextField fx:id="taskTitleTextField" layoutX="144.0" layoutY="585.0" prefHeight="38.0" prefWidth="530.0"
+               promptText="Enter task name...">
+        <cursor>
+          <Cursor fx:constant="TEXT"/>
+        </cursor>
+    </TextField>
+    <TextField fx:id="taskDescriptionTextField" layoutX="144.0" layoutY="629.0" prefHeight="38.0" prefWidth="727.0"
+               promptText="Enter task description...">
+        <cursor>
+          <Cursor fx:constant="TEXT"/>
+        </cursor>
+    </TextField>
+    <DatePicker fx:id="dueDatePicker" layoutX="682.0" layoutY="585.0" onAction="#dueDatePicked" prefHeight="38.0"
+                prefWidth="190.0" promptText="Choose due date...">
+        <cursor>
+          <Cursor fx:constant="HAND"/>
+        </cursor>
+    </DatePicker>
+    <Button fx:id="deleteTaskButton" layoutX="13.0" layoutY="630.0" mnemonicParsing="false"
+            onAction="#deleteTaskButtonPressed" prefHeight="24.0" prefWidth="124.0"
+            style="-fx-background-color: #F08080;" text="🗑 Delete Task" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="16.0"/>
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+    <Button fx:id="clearListButton" layoutX="14.0" layoutY="79.0" mnemonicParsing="false"
+            onAction="#clearListButtonPressed" prefHeight="30.0" prefWidth="112.0"
+            style="-fx-background-color: #F08080;" text="Clear List" textFill="WHITE">
+        <font>
+          <Font name="System Bold" size="14.0"/>
+        </font>
+        <cursor>
+          <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
 </AnchorPane>

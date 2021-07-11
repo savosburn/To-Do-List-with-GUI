@@ -5,9 +5,7 @@
 
 package ucf.assignments;
 
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,12 +14,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class HelpModifyTasksController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button returnButton;

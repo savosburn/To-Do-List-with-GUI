@@ -9,100 +9,108 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpDeleteTasksController">
-   <children>
-      <AnchorPane layoutY="-5.0" prefHeight="464.0" prefWidth="706.0">
-         <children>
-            <ImageView fitHeight="128.0" fitWidth="669.0" layoutX="24.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/HelpDeleteTasksSelectItem.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="102.0" fitWidth="182.0" layoutX="24.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/HelpDeleteTasksDelete.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="133.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <AnchorPane layoutY="4.0" prefHeight="66.0" prefWidth="706.0" style="-fx-background-color: #F08080;">
-               <children>
-                  <Button fx:id="returnButton" layoutY="9.0" mnemonicParsing="false" onAction="#returnButtonPressed" style="-fx-background-color: #F08080;" text="X" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Text fill="WHITE" layoutX="53.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help: Delete Tasks" wrappingWidth="322.99981689453125">
-                     <font>
-                        <Font name="System Bold" size="35.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="nextButton" layoutX="624.0" layoutY="11.0" mnemonicParsing="false" onAction="#nextButtonPressed" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Next" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="backButton" layoutX="546.0" layoutY="11.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Back" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <Text fill="INDIANRED" layoutX="88.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select task to be deleted." textAlignment="CENTER" wrappingWidth="523.3749771118164">
-               <font>
-                  <Font name="System Bold" size="21.0" />
-               </font>
-            </Text>
-            <Text fill="INDIANRED" layoutX="94.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select &quot;Delete Task&quot; to delete task from To Do List." textAlignment="CENTER" wrappingWidth="523.3749771118165">
-               <font>
-                  <Font name="System Bold" size="21.0" />
-               </font>
-            </Text>
-            <Text fill="INDIANRED" layoutX="225.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This To Do List application is dedicated to Rey.">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Text>
-            <Circle fill="INDIANRED" layoutX="336.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" />
-            <Circle fill="LIGHTCORAL" layoutX="379.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" />
-            <Circle fill="LIGHTCORAL" layoutX="401.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" />
-            <Circle fill="LIGHTCORAL" layoutX="316.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" />
-            <Circle fill="LIGHTCORAL" layoutX="356.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" />
-            <Text fill="INDIANRED" layoutX="214.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↑">
-               <font>
-                  <Font name="System Bold" size="96.0" />
-               </font>
-            </Text>
-            <Text fill="INDIANRED" layoutX="170.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR select &quot;Clear All&quot; to clear entire list.">
-               <font>
-                  <Font name="System Bold" size="21.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="128.0" fitWidth="124.0" layoutX="549.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/HelpDeleteTasksClear.png" />
-               </image>
-            </ImageView>
-            <Text fill="INDIANRED" layoutX="466.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="→">
-               <font>
-                  <Font name="System Bold" size="96.0" />
-               </font>
-            </Text>
-            <Text fill="INDIANRED" layoutX="146.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
-               <font>
-                  <Font name="System Bold" size="96.0" />
-               </font>
-            </Text>
-         </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ucf.assignments.HelpDeleteTasksController">
+   <AnchorPane layoutY="-5.0" prefHeight="464.0" prefWidth="706.0">
+      <ImageView fitHeight="128.0" fitWidth="669.0" layoutX="24.0" layoutY="203.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@../Images/HelpDeleteTasksSelectItem.png"/>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="182.0" layoutX="24.0" layoutY="309.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@../Images/HelpDeleteTasksDelete.png"/>
+      </ImageView>
+      <Text layoutX="133.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+      <AnchorPane layoutY="4.0" prefHeight="66.0" prefWidth="706.0" style="-fx-background-color: #F08080;">
+         <Button fx:id="returnButton" layoutY="9.0" mnemonicParsing="false" onAction="#returnButtonPressed"
+                 style="-fx-background-color: #F08080;" text="X" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="26.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Button>
+         <Text fill="WHITE" layoutX="53.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="Help: Delete Tasks" wrappingWidth="322.99981689453125">
+            <font>
+               <Font name="System Bold" size="35.0"/>
+            </font>
+         </Text>
+         <Button fx:id="nextButton" layoutX="624.0" layoutY="11.0" mnemonicParsing="false"
+                 onAction="#nextButtonPressed" prefHeight="34.0" prefWidth="67.0"
+                 style="-fx-background-color: #cd5c5c;" text="Next" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="18.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Button>
+         <Button fx:id="backButton" layoutX="546.0" layoutY="11.0" mnemonicParsing="false"
+                 onAction="#backButtonPressed" prefHeight="34.0" prefWidth="67.0"
+                 style="-fx-background-color: #cd5c5c;" text="Back" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="18.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Button>
       </AnchorPane>
-   </children>
+      <Text fill="INDIANRED" layoutX="88.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Select task to be deleted." textAlignment="CENTER" wrappingWidth="523.3749771118164">
+         <font>
+            <Font name="System Bold" size="21.0"/>
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="94.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Select &quot;Delete Task&quot; to delete task from To Do List." textAlignment="CENTER"
+            wrappingWidth="523.3749771118165">
+         <font>
+            <Font name="System Bold" size="21.0"/>
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="225.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="This To Do List application is dedicated to Rey.">
+         <font>
+            <Font name="System Bold" size="12.0"/>
+         </font>
+      </Text>
+      <Circle fill="INDIANRED" layoutX="336.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE"
+              strokeWidth="0.5"/>
+      <Circle fill="LIGHTCORAL" layoutX="379.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE"
+              strokeWidth="0.5"/>
+      <Circle fill="LIGHTCORAL" layoutX="401.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE"
+              strokeWidth="0.5"/>
+      <Circle fill="LIGHTCORAL" layoutX="316.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE"
+              strokeWidth="0.5"/>
+      <Circle fill="LIGHTCORAL" layoutX="356.0" layoutY="412.0" radius="6.0" stroke="WHITE" strokeType="INSIDE"
+              strokeWidth="0.5"/>
+      <Text fill="INDIANRED" layoutX="214.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↑">
+         <font>
+            <Font name="System Bold" size="96.0"/>
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="170.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="OR select &quot;Clear All&quot; to clear entire list.">
+         <font>
+            <Font name="System Bold" size="21.0"/>
+         </font>
+      </Text>
+      <ImageView fitHeight="128.0" fitWidth="124.0" layoutX="549.0" layoutY="314.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@../Images/HelpDeleteTasksClear.png"/>
+      </ImageView>
+      <Text fill="INDIANRED" layoutX="466.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="→">
+         <font>
+            <Font name="System Bold" size="96.0"/>
+         </font>
+      </Text>
+      <Text fill="INDIANRED" layoutX="146.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="←">
+         <font>
+            <Font name="System Bold" size="96.0"/>
+         </font>
+      </Text>
+   </AnchorPane>
 </AnchorPane>

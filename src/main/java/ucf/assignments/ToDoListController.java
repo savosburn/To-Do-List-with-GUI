@@ -9,20 +9,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,19 +30,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.StringConverter;
 
 public class ToDoListController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button helpButton;
@@ -101,12 +90,6 @@ public class ToDoListController {
 
     @FXML
     private DatePicker dueDatePicker;
-
-    @FXML
-    private Button clearListButton;
-
-    @FXML
-    private AnchorPane controller;
 
     FileChooser fileChooser = new FileChooser();
 
@@ -402,7 +385,7 @@ public class ToDoListController {
 
     // Pre-condition: ObservableList is saved to a .txt file
     @FXML
-    public void saveItemsButtonPressed(ActionEvent event) {
+    public void saveItemsButtonPressed() {
         // To Do List is added to the ListsController scene
         // Scene is not switched unless user presses return button
 
@@ -462,7 +445,7 @@ public class ToDoListController {
 
     // Post-conditions: GUI displays all items
     @FXML
-    public void viewAllTasksButtonPressed(ActionEvent event) {
+    public void viewAllTasksButtonPressed() {
 
         // Ensure that there is not already content in filtered list or the table
         filteredList.clear();
@@ -494,7 +477,7 @@ public class ToDoListController {
 
     // Post-conditions: GUI displays only completed items
     @FXML
-    void viewCompleteTasksButtonPressed(ActionEvent event) {
+    void viewCompleteTasksButtonPressed() {
 
         // Clears the filtered list in case anything is already in it
         filteredList.clear();
@@ -509,7 +492,7 @@ public class ToDoListController {
 
     // Post-conditions: GUI displays only incomplete items
     @FXML
-    void viewIncompleteTasksButtonPressed(ActionEvent event) {
+    void viewIncompleteTasksButtonPressed() {
 
         // Clear the filtered list in case anything is already in it
         filteredList.clear();
@@ -540,6 +523,7 @@ public class ToDoListController {
     @FXML
     public void initialize() {
 
+        assert helpButton != null : "fx:id=\"helpButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert fileMenuButton != null : "fx:id=\"fileMenuButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert saveItemsButton != null : "fx:id=\"saveItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert loadItemsButton != null : "fx:id=\"loadItemsButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
@@ -547,7 +531,6 @@ public class ToDoListController {
         assert viewAllTasksButton != null : "fx:id=\"viewAllTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewCompleteTasksButton != null : "fx:id=\"viewCompleteTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert viewIncompleteTasksButton != null : "fx:id=\"viewIncompleteTasksButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
-        assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskTable != null : "fx:id=\"taskTable\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert markCompletedColumn != null : "fx:id=\"markCompletedColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskTitleColumn != null : "fx:id=\"taskTitleColumn\" was not injected: check your FXML file 'ToDoListController.fxml'.";
@@ -557,14 +540,14 @@ public class ToDoListController {
         assert taskTitleTextField != null : "fx:id=\"taskTitleTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert taskDescriptionTextField != null : "fx:id=\"taskDescriptionTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert dueDatePicker != null : "fx:id=\"dueDatePicker\" was not injected: check your FXML file 'ToDoListController.fxml'.";
-
+        assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
 
         // Set the initial directory of the file chooser to be the user's directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
 
         // Set date picker to display yyyy-MM-dd format
-        dueDatePicker.setConverter(new StringConverter<LocalDate>() {
+        dueDatePicker.setConverter(new StringConverter<>() {
 
             private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -592,14 +575,11 @@ public class ToDoListController {
         markCompletedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(markCompletedColumn));
 
         // Set taskTitle column to editable text fields
-        taskTitleColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskTitle"));
+        taskTitleColumn.setCellValueFactory(new PropertyValueFactory<>("taskTitle"));
         taskTitleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        taskTitleColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
-                ToDoList list = event.getRowValue();
-                list.setTaskTitle(event.getNewValue());
-            }
+        taskTitleColumn.setOnEditCommit(event -> {
+            ToDoList list = event.getRowValue();
+            list.setTaskTitle(event.getNewValue());
         });
 
         // Refresh and reset the table
@@ -607,14 +587,11 @@ public class ToDoListController {
         taskTable.setItems(toDoItems);
 
         // Set descriptionColumn to editable text fields
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("taskDescription"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("taskDescription"));
         descriptionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        descriptionColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
-                ToDoList tdl = event.getRowValue();
-                tdl.setTaskDescription(event.getNewValue());
-            }
+        descriptionColumn.setOnEditCommit(event -> {
+            ToDoList tdl = event.getRowValue();
+            tdl.setTaskDescription(event.getNewValue());
         });
 
         // Refresh and reset the table
@@ -622,37 +599,33 @@ public class ToDoListController {
         taskTable.setItems(toDoItems);
 
         // dueDateColumn set with editable text fields that have a specific format
-        dueDateColumn.setCellValueFactory(new PropertyValueFactory<ToDoList, String>("dueDate"));
+        dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         dueDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        dueDateColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<ToDoList, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<ToDoList, String> event) {
-                ToDoList tdl = event.getRowValue();
+        dueDateColumn.setOnEditCommit(event -> {
+            ToDoList tdl = event.getRowValue();
 
-                String current = tdl.dueDate;
-                String newDate = event.getNewValue();
+            String current = tdl.dueDate;
+            String newDate = event.getNewValue();
 
-                // Ensure that the user's date is in the correct format
-                String regex = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
-                Pattern pt = Pattern.compile(regex);
-                Matcher mt = pt.matcher(newDate);
+            // Ensure that the user's date is in the correct format
+            String regex = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
+            Pattern pt = Pattern.compile(regex);
+            Matcher mt = pt.matcher(newDate);
 
-                boolean result = mt.matches();
+            boolean result = mt.matches();
 
-                if (!result) {
-                    System.out.print("Invalid format.\n");
-                    tdl.setDueDate(current);
+            if (!result) {
+                System.out.print("Invalid format.\n");
+                tdl.setDueDate(current);
 
-                    toInvalidDateController();
-                } else {
-                    System.out.print("valid format");
-                    tdl.setDueDate(newDate);
-                }
-
-                taskTable.refresh();
-                taskTable.setItems(toDoItems);
-
+                toInvalidDateController();
+            } else {
+                System.out.print("valid format");
+                tdl.setDueDate(newDate);
             }
+
+            taskTable.refresh();
+            taskTable.setItems(toDoItems);
         });
     }
 }
