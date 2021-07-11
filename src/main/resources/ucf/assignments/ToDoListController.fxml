@@ -85,7 +85,10 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <DatePicker fx:id="dueDatePicker" layoutX="682.0" layoutY="585.0" onAction="#dueDatePicked" prefHeight="38.0" prefWidth="190.0" promptText="Choose due date..." />
+      <DatePicker fx:id="dueDatePicker" layoutX="682.0" layoutY="585.0" onAction="#dueDatePicked" prefHeight="38.0" prefWidth="190.0" promptText="Choose due date...">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
         <Button fx:id="deleteTaskButton" layoutX="13.0" layoutY="630.0" mnemonicParsing="false" onAction="#deleteTaskButtonPressed" prefHeight="24.0" prefWidth="124.0" style="-fx-background-color: #F08080;" text="🗑 Delete Task" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="16.0" />
