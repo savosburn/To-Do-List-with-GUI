@@ -104,23 +104,40 @@ public class ToDoListController {
         ToDoList td = new ToDoList();
         System.out.print("Add task button pressed.\n");
 
-        // Add user input to a toDoList object
-        Boolean isSet = setToDoItems(td);
+        // Get what's in the text fields
+        String title = taskTitleTextField.getText();
+        String description = taskDescriptionTextField.getText();
+        String dueDate = catchNullPointerDueDate();
 
-        // If the items were successfully added to a ToDoList
-        if (isSet) {
-            // Add the ToDoList to the ObservableList
-            toDoItems.add(td);
-            System.out.print("items added.\n");
+        // If the description is the correct length
+        if (checkDescriptionLength(description.length())) {
+
+            // Add the input to the ObservableList
+            addItems(dueDate, title, description, false);
         } else {
 
-            // Else, tell user that the input was incorrect
+            // Else, output an error screen
             String sceneChange = toInvalidDescriptionController();
-            System.out.print("items not added.\n");
+            System.out.print(sceneChange);
         }
 
         // Clear the text fields
         clearTextFields();
+    }
+
+    // Post-conditions: Adds items to the ObservableList of items
+    public ObservableList<ToDoList> addItems(String date, String title, String description, Boolean isComplete) {
+        ToDoList tdl = new ToDoList();
+
+        tdl.setDueDate(date);
+        tdl.setTaskTitle(title);
+        tdl.setTaskDescription(description);
+        tdl.isCompleted.set(isComplete);
+
+        toDoItems.add(tdl);
+
+        System.out.printf("%s added to To Do List.\n", tdl.taskTitle);
+        return toDoItems;
     }
 
     // Post-conditions: Switches scene to InvalidDateController.fxml and returns a string
@@ -133,36 +150,17 @@ public class ToDoListController {
             stage.setTitle("Invalid Description");
             stage.show();
 
-            return "Scene switched to InvalidDateController.fxml\n";
+            return "Scene switched to InvalidDescriptionController.fxml\n";
         } catch(Exception e) {
 
             return "Scene switch unsuccessful.\n";
         }
     }
 
-    // Post-conditions: Ensures that items are set properly
-    private Boolean setToDoItems(ToDoList td) {
-
-        // If the description is the correct length
-        if (checkDescriptionLength()) {
-
-            // Set all of the To Do List fields
-            td.setTaskTitle(taskTitleTextField.getText());
-            td.setTaskDescription(taskDescriptionTextField.getText());
-            td.setDueDate(catchNullPointerDueDate());
-            td.setIsCompleted(false);
-
-            // Return true because everything was set
-            return true;
-        }
-
-        // Return false if items were not properly set
-        return false;
-    }
-
+    // Pre-conditions: Takes in an integer of the number of characters in a string
     // Post-conditions: Returns true if the description is between 1 and 256 characters
-    public Boolean checkDescriptionLength() {
-        return (taskDescriptionTextField.getText().length() > 1 && taskDescriptionTextField.getText().length() < 256);
+    public Boolean checkDescriptionLength(int numChars) {
+        return (numChars > 1 && numChars < 256);
     }
 
     // Post-conditions: Clears all the fields in the gui
@@ -174,7 +172,7 @@ public class ToDoListController {
     }
 
     // Post-conditions: Returns the value of the date picker. Returns " " if the date picker was null
-    public String catchNullPointerDueDate() {
+    private String catchNullPointerDueDate() {
         try {
 
             // Return value taken from date picker
@@ -205,7 +203,7 @@ public class ToDoListController {
     }
 
     // Post-conditions: Switches scene to InvalidDateController.fxml and returns a string
-    public String toInvalidDateController() {
+    public void toInvalidDateController() {
         try {
 
             // Switch scene to Invalid date controller
@@ -216,11 +214,11 @@ public class ToDoListController {
             stage.setTitle("Invalid Date");
             stage.show();
 
-            return "Scene switched to InvalidDateController.fxml\n";
+            System.out.print("Scene switched to InvalidDateController.fxml\n");
         } catch(Exception e) {
 
             // Catch if the scene could not switch
-            return "Scene switch unsuccessful.\n";
+            System.out.print("Scene switch unsuccessful.\n");
         }
     }
 
@@ -232,7 +230,7 @@ public class ToDoListController {
 
         try {
             // Delete selected item from ObservableList
-            toDoItems.remove(taskTable.getSelectionModel().getSelectedItem());
+            toDoItems = deleteTask(taskTable.getSelectionModel().getSelectedItem(), toDoItems);
 
             // Remove selected item from gui table
             taskTable.refresh();
@@ -246,6 +244,27 @@ public class ToDoListController {
         }
     }
 
+    // Post-conditions: Resets all items of to do list to null and returns the empty object
+    public ToDoList deleteAllItems(ToDoList td) {
+        td.setTaskTitle(null);
+        td.setTaskDescription(null);
+        td.setDueDate(null);
+        td.setIsCompleted(false);
+
+        return td;
+    }
+
+    // Post-conditions: Removes task from ObservableList
+    public ObservableList<ToDoList> deleteTask(ToDoList td, ObservableList<ToDoList> tdl) {
+        System.out.printf("%s deleted from To Do List.\n", td.taskTitle);
+
+        // Delete all the items in the task, then remove task from list
+        td = deleteAllItems(td);
+        tdl.remove(td);
+
+        return tdl;
+    }
+
     // Post-condition: Observable list is cleared
     @FXML
     public void clearListButtonPressed() {
@@ -253,11 +272,19 @@ public class ToDoListController {
         System.out.print("ClearListButton pressed.\n");
 
         // Clear all of the to do items
-        toDoItems.clear();
+       // toDoItems.clear();
+
+        ObservableList<ToDoList> clearedList = clearEntireList(toDoItems);
 
         // Refresh and reset the table
         taskTable.refresh();
-        taskTable.setItems(toDoItems);
+        taskTable.setItems(clearedList);
+    }
+
+    public ObservableList<ToDoList> clearEntireList(ObservableList<ToDoList> list) {
+        list.clear();
+
+        return list;
     }
 
     // Post-conditions: Switches scene to the help controller
@@ -314,15 +341,21 @@ public class ToDoListController {
             toDoItems.clear();
 
             // Chosen file is loaded
-            loadItems(file);
+            ArrayList<String> fileStrings = loadFileStrings(file);
+            ObservableList<ToDoList> loadedFile = addToObservableList(fileStrings);
+
+            // Refresh and reset the table
+            taskTable.refresh();
+            taskTable.setItems(loadedFile);
         } catch (Exception ex) {
+
+            // Check if file could be loaded
             System.out.print("Could not load file.\n");
         }
-
     }
 
-    // Post-conditions: Observable list is filled with info from .txt file
-    public void loadItems(File file) {
+    // Post-conditions: Returns an ArrayList of strings found in the file
+    public ArrayList<String> loadFileStrings(File file) {
         // Create new ArrayList
         ArrayList<String> items = new ArrayList<>();
 
@@ -336,51 +369,41 @@ public class ToDoListController {
                 items.add(scanner.nextLine());
             }
 
-            // Parse the strings in the ArrayList to turn them into an Observable list
-            addToObservableList(items);
-
+            return items;
         } catch (FileNotFoundException e) {
 
             // Check if the file was not found
             System.out.print("File not found.\n");
+
+            return null;
         }
     }
 
-    // Post-conditions: Populates array list with data from loaded file
-    public void addToObservableList(ArrayList<String> items) {
+    // Post-condition: Parses the strings in the ArrayList and returns them as an ObservableList
+    public ObservableList<ToDoList> addToObservableList(ArrayList<String> items) {
+        ObservableList<ToDoList> test = FXCollections.observableArrayList();
 
         // Iterate through every object string
         for (String item : items) {
 
-            // Create a new ToDoList object
-            ToDoList td = new ToDoList();
+            // Parse each string
+            String[] parsedString = parseStrings(item);
 
-            // Parse the strings
-            td = parseStrings(item, td);
-
-            // Add the object the observable list
-            toDoItems.add(td);
+            // Add the string to the ObservableList
+            test = addItems(parsedString[0], parsedString[1], parsedString[2], isBooleanPropertyTrue(parsedString[3]));
         }
 
+        return test;
     }
 
-    // Post-conditions: Parses the items
-    public ToDoList parseStrings(String item, ToDoList td) {
+    // Post-conditions: Checks if the Boolean property is true or false
+    public Boolean isBooleanPropertyTrue(String booleanProperty) {
+        return booleanProperty.equals("BooleanProperty [value: true]");
+    }
 
-        // Create a new ToDoList object
-        ToDoList tdl = new ToDoList();
-
-        // Splits the string at every ^
-        String[] splitString = item.split("\\^");
-
-        // Sets the To Do List items
-        tdl.dueDate = splitString[0];
-        tdl.taskTitle = splitString[1];
-        tdl.taskDescription = splitString[2];
-        tdl.isCompleted.set(splitString[3].equals("BooleanProperty [value: true]"));
-
-        // Return the to do list
-        return tdl;
+    // Post-conditions: Parses all the strings at ^
+    public String[] parseStrings(String item) {
+        return item.split("\\^");
     }
 
     // Pre-condition: ObservableList is saved to a .txt file
@@ -391,20 +414,23 @@ public class ToDoListController {
 
         // Open the file chooser
         Window stage = fileMenuButton.getScene().getWindow();
+
         fileChooser.setTitle("Save To DO List");
         fileChooser.setInitialFileName("mySaveFile");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text File", "*.txt"));
 
         try {
 
-            // Let user namem the file to save
+            // Let user name the file to save
             File file = fileChooser.showSaveDialog(stage);
 
             // Save the chosen directory for the next time it opens
             fileChooser.setInitialDirectory(file.getParentFile());
 
             // Save the file
-            saveList(file);
+            //saveList(file);
+            String saveFileOutput = saveList(file, toDoItems);
+            System.out.print(saveFileOutput);
         } catch (Exception ex) {
 
             // Ensure that the file can be saved
@@ -412,13 +438,31 @@ public class ToDoListController {
         }
     }
 
-    // Post-conditions: Writes the object ot the file
-    public void saveList(File file) {
+    public String saveList(File file, ObservableList<ToDoList> lists) {
+        String outputString = " ";
 
         try(FileWriter writer = new FileWriter(file)) {
 
             // Add all the objects to the list with ^ to separate the items in each object
-            for (ToDoList toDoItem : toDoItems) {
+            for (ToDoList toDoItem : lists) {
+
+                if (outputString.equals(" ")) {
+                    outputString = String.format("%s^", toDoItem.dueDate);
+                    outputString += String.format("%s^", toDoItem.taskTitle);
+                    outputString += String.format("%s^", toDoItem.taskDescription);
+                    outputString += String.format("%s^", toDoItem.isCompleted.toString());
+                    outputString += "\n";
+
+                } else {
+
+                    outputString += String.format("%s^", toDoItem.dueDate);
+                    outputString += String.format("%s^", toDoItem.taskTitle);
+                    outputString += String.format("%s^", toDoItem.taskDescription);
+                    outputString += String.format("%s^", toDoItem.isCompleted.toString());
+                    outputString += "\n";
+                }
+
+
                 writer.write(toDoItem.dueDate + "^");
                 writer.write(toDoItem.taskTitle + "^");
                 writer.write(toDoItem.taskDescription + "^");
@@ -428,10 +472,13 @@ public class ToDoListController {
                 writer.write("\n");
             }
 
+            return outputString;
+
         } catch (IOException e) {
 
             // Check that the file exists
-            System.out.print("File does not exist.\n");
+          //  System.out.print("File does not exist.\n");
+            return "File does not exist.\n";
         }
     }
 
@@ -451,23 +498,34 @@ public class ToDoListController {
         filteredList.clear();
         taskTable.refresh();
 
+        // Get all of the tasks
+        ObservableList<ToDoList> allTasks = getAllTasks(toDoItems);
+
         // Reset the table with the main ToDoList
-        taskTable.setItems(toDoItems);
+        taskTable.setItems(allTasks);
     }
 
-    // Post-condition: Creates a list with only items whose isCompleted box is checked true
-    public void filterList() {
+    // Post-conditions: Returns a list with all of the items in it
+    public ObservableList<ToDoList> getAllTasks(ObservableList<ToDoList> toDo) {
+        return toDo;
+    }
 
-        // For every item in the list of to do lists
-        for (ToDoList toDoItem : toDoItems) {
+    // Post-conditions: Returns an ObservableList with items that were marked complete
+    public ObservableList<ToDoList> filterList(ObservableList<ToDoList> toDoItemsList) {
 
-            // Check if the item is marked complete
-            if (isChecked(toDoItem)) {
+        // For every item in the To Do List
+        for (ToDoList toDoList : toDoItemsList) {
 
-                // Add it to the filtered list
-                filteredList.add(toDoItem);
+            // If it is checked complete
+            if (isChecked(toDoList)) {
+
+                // Add it to the list of completed lists
+                filteredList.add(toDoList);
             }
         }
+
+        // Return the completed lists
+        return filteredList;
     }
 
     // Post-conditions: Returns state of check box
@@ -483,11 +541,11 @@ public class ToDoListController {
         filteredList.clear();
 
         // Fill filtered list with only items marked complete
-        filterList();
+        ObservableList<ToDoList> filtered = filterList(toDoItems);
 
         // Refresh and reset the table
         taskTable.refresh();
-        taskTable.setItems(filteredList);
+        taskTable.setItems(filtered);
     }
 
     // Post-conditions: GUI displays only incomplete items
@@ -498,26 +556,28 @@ public class ToDoListController {
         filteredList.clear();
 
         // Add only incomplete items to the filtered lsit
-        filterIncompleteList();
+        ObservableList<ToDoList> filtered = filterIncompleteList(toDoItems);
 
         // Refresh and reset the table
         taskTable.refresh();
-        taskTable.setItems(filteredList);
+        taskTable.setItems(filtered);
     }
 
-    // Post-conditions: Adds only incomplete items the filtered list
-    public void filterIncompleteList() {
+    public ObservableList<ToDoList> filterIncompleteList(ObservableList<ToDoList> toDoItemsList) {
 
-        // For every item in the list of to do lists
-        for (ToDoList toDoItem : toDoItems) {
+        // For every item in the To Do List
+        for (ToDoList toDoList : toDoItemsList) {
 
-            // If it is not completed
-            if (!isChecked(toDoItem)) {
+            // If it is checked complete
+            if (!isChecked(toDoList)) {
 
-                // Add it to the filtered list
-                filteredList.add(toDoItem);
+                // Add it to the list of completed lists
+                filteredList.add(toDoList);
             }
         }
+
+        // Return the completed lists
+        return filteredList;
     }
 
     @FXML
@@ -544,7 +604,6 @@ public class ToDoListController {
 
         // Set the initial directory of the file chooser to be the user's directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-
 
         // Set date picker to display yyyy-MM-dd format
         dueDatePicker.setConverter(new StringConverter<>() {
