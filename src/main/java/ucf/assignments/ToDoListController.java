@@ -37,59 +37,24 @@ import javafx.util.StringConverter;
 
 public class ToDoListController {
 
-    @FXML
-    private Button helpButton;
-
-    @FXML
-    private MenuButton fileMenuButton;
-
-    @FXML
-    private MenuItem saveItemsButton;
-
-    @FXML
-    private MenuItem loadItemsButton;
-
-    @FXML
-    private MenuButton sortMenuButton;
-
-    @FXML
-    private MenuItem viewAllTasksButton;
-
-    @FXML
-    private MenuItem viewCompleteTasksButton;
-
-    @FXML
-    private MenuItem viewIncompleteTasksButton;
-
-    @FXML
-    private TableView<ToDoList> taskTable;
-
-    @FXML
-    private TableColumn<ToDoList, Boolean> markCompletedColumn;
-
-    @FXML
-    private TableColumn<ToDoList, String> taskTitleColumn;
-
-    @FXML
-    private TableColumn<ToDoList, String> descriptionColumn;
-
-    @FXML
-    private TableColumn<ToDoList, String> dueDateColumn;
-
-    @FXML
-    private Button addTaskButton;
-
-    @FXML
-    private Button deleteTaskButton;
-
-    @FXML
-    private TextField taskTitleTextField;
-
-    @FXML
-    private TextField taskDescriptionTextField;
-
-    @FXML
-    private DatePicker dueDatePicker;
+    @FXML private Button helpButton;
+    @FXML private MenuButton fileMenuButton;
+    @FXML private MenuItem saveItemsButton;
+    @FXML private MenuItem loadItemsButton;
+    @FXML private MenuButton sortMenuButton;
+    @FXML private MenuItem viewAllTasksButton;
+    @FXML private MenuItem viewCompleteTasksButton;
+    @FXML private MenuItem viewIncompleteTasksButton;
+    @FXML private TableView<ToDoList> taskTable;
+    @FXML private TableColumn<ToDoList, Boolean> markCompletedColumn;
+    @FXML private TableColumn<ToDoList, String> taskTitleColumn;
+    @FXML private TableColumn<ToDoList, String> descriptionColumn;
+    @FXML private TableColumn<ToDoList, String> dueDateColumn;
+    @FXML private Button addTaskButton;
+    @FXML private Button deleteTaskButton;
+    @FXML private TextField taskTitleTextField;
+    @FXML private TextField taskDescriptionTextField;
+    @FXML private DatePicker dueDatePicker;
 
     FileChooser fileChooser = new FileChooser();
 
@@ -99,7 +64,6 @@ public class ToDoListController {
     // Post-conditions: Adds new ToDoList object to the Observable List
     @FXML
     public void addTaskButtonPressed() {
-
         // Create ToDoList object
         System.out.print("Add task button pressed.\n");
 
@@ -126,13 +90,16 @@ public class ToDoListController {
 
     // Post-conditions: Adds items to the ObservableList of items
     public ObservableList<ToDoList> addItems(String date, String title, String description, Boolean isComplete) {
+        // Create ToDoList object
         ToDoList tdl = new ToDoList();
 
+        // Set the constructors
         tdl.setDueDate(date);
         tdl.setTaskTitle(title);
         tdl.setTaskDescription(description);
         tdl.isCompleted.set(isComplete);
 
+        // Add object to ObservableList
         toDoItems.add(tdl);
 
         System.out.printf("%s added to To Do List.\n", tdl.taskTitle);
@@ -142,6 +109,7 @@ public class ToDoListController {
     // Post-conditions: Switches scene to InvalidDateController.fxml and returns a string
     public String toInvalidDescriptionController() {
         try {
+            // Open new stage
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidDescriptionLengthController.fxml")));
 
             Stage stage = new Stage();
@@ -152,11 +120,11 @@ public class ToDoListController {
             return "Scene switched to InvalidDescriptionController.fxml\n";
         } catch(Exception e) {
 
+            // Catch if the stage could not be opened
             return "Scene switch unsuccessful.\n";
         }
     }
 
-    // Pre-conditions: Takes in an integer of the number of characters in a string
     // Post-conditions: Returns true if the description is between 1 and 256 characters
     public Boolean checkDescriptionLength(int numChars) {
         return (numChars > 1 && numChars < 256);
@@ -173,7 +141,6 @@ public class ToDoListController {
     // Post-conditions: Returns the value of the date picker. Returns " " if the date picker was null
     private String catchNullPointerDueDate() {
         try {
-
             // Return value taken from date picker
             return dueDatePicker.getValue().toString();
         } catch (NullPointerException e) {
@@ -186,7 +153,6 @@ public class ToDoListController {
     // Post-conditions: Returns the chosen due date
     @FXML
     public String dueDatePicked() {
-
         // Signify that a date was picked
         String output = catchNullPointerDueDate();
 
@@ -204,7 +170,6 @@ public class ToDoListController {
     // Post-conditions: Switches scene to InvalidDateController.fxml and returns a string
     public void toInvalidDateController() {
         try {
-
             // Switch scene to Invalid date controller
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InvalidDateController.fxml")));
 
@@ -224,7 +189,6 @@ public class ToDoListController {
     // Post-conditions: returns true if the item was successfully removed
     @FXML
     public Boolean deleteTaskButtonPressed() {
-
         System.out.print("Delete task button pressed.\n");
 
         try {
@@ -267,12 +231,9 @@ public class ToDoListController {
     // Post-condition: Observable list is cleared
     @FXML
     public void clearListButtonPressed() {
-
         System.out.print("ClearListButton pressed.\n");
 
         // Clear all of the to do items
-       // toDoItems.clear();
-
         ObservableList<ToDoList> clearedList = clearEntireList(toDoItems);
 
         // Refresh and reset the table
@@ -283,14 +244,12 @@ public class ToDoListController {
     // Post-conditions: Returns and clears an ObservableList
     public ObservableList<ToDoList> clearEntireList(ObservableList<ToDoList> list) {
         list.clear();
-
         return list;
     }
 
     // Post-conditions: Switches scene to the help controller
     @FXML
     public void helpButtonPressed() {
-
         String sceneSwitch = toHelpController();
         System.out.print(sceneSwitch);
     }
@@ -298,7 +257,6 @@ public class ToDoListController {
     // Post-conditions: Switches scene to the help controller
     public String toHelpController() {
         try {
-
             // Switch scene to help controller
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HelpController.fxml")));
 
@@ -326,7 +284,6 @@ public class ToDoListController {
     // Post-conditions: Opens file chooser to load items
     @FXML
     public void loadItemsButtonPressed() {
-
         // File chooser opens
         Window stage = fileMenuButton.getScene().getWindow();
         fileChooser.setTitle("Load To Do List");
@@ -409,9 +366,6 @@ public class ToDoListController {
     // Pre-condition: ObservableList is saved to a .txt file
     @FXML
     public void saveItemsButtonPressed() {
-        // To Do List is added to the ListsController scene
-        // Scene is not switched unless user presses return button
-
         // Open the file chooser
         Window stage = fileMenuButton.getScene().getWindow();
 
@@ -440,29 +394,12 @@ public class ToDoListController {
 
     // Post-conditions: Writes the object ot the file
     public String saveList(File file, ObservableList<ToDoList> lists) {
-        String outputString = " ";
+        StringBuilder outputString = new StringBuilder(" ");
 
         try(FileWriter writer = new FileWriter(file)) {
 
             // Add all the objects to the list with ^ to separate the items in each object
             for (ToDoList toDoItem : lists) {
-
-                if (outputString.equals(" ")) {
-                    outputString = String.format("%s^", toDoItem.dueDate);
-                    outputString += String.format("%s^", toDoItem.taskTitle);
-                    outputString += String.format("%s^", toDoItem.taskDescription);
-                    outputString += String.format("%s^", toDoItem.isCompleted.toString());
-                    outputString += "\n";
-
-                } else {
-
-                    outputString += String.format("%s^", toDoItem.dueDate);
-                    outputString += String.format("%s^", toDoItem.taskTitle);
-                    outputString += String.format("%s^", toDoItem.taskDescription);
-                    outputString += String.format("%s^", toDoItem.isCompleted.toString());
-                    outputString += "\n";
-                }
-
 
                 writer.write(toDoItem.dueDate + "^");
                 writer.write(toDoItem.taskTitle + "^");
@@ -471,9 +408,22 @@ public class ToDoListController {
 
                 // Newline signifies a new object
                 writer.write("\n");
+
+                // Create strings for testing
+                if (outputString.toString().equals(" ")) {
+                    outputString = new StringBuilder(String.format("%s^", toDoItem.dueDate));
+
+                } else {
+
+                    outputString.append(String.format("%s^", toDoItem.dueDate));
+                }
+                outputString.append(String.format("%s^", toDoItem.taskTitle));
+                outputString.append(String.format("%s^", toDoItem.taskDescription));
+                outputString.append(String.format("%s^", toDoItem.isCompleted.toString()));
+                outputString.append("\n");
             }
 
-            return outputString;
+            return outputString.toString();
 
         } catch (IOException e) {
 

@@ -15,21 +15,14 @@ import javafx.stage.Stage;
 
 public class HelpModifyTasksController {
 
-    @FXML
-    private Button returnButton;
-
-    @FXML
-    private Button nextButton;
-
-    @FXML
-    private Button backButton;
-
+    @FXML private Button returnButton;
+    @FXML private Button nextButton;
+    @FXML private Button backButton;
 
     // Post-conditions: Scene is switched to previous help scene
     @FXML
     public String backButtonPressed() {
         try {
-
             // Close current scene
             Stage curStage = (Stage)backButton.getScene().getWindow();
             curStage.close();
@@ -55,7 +48,6 @@ public class HelpModifyTasksController {
     // Post-conditions: Scene switched to next help scene
     @FXML
     public String nextButtonPressed() {
-
         try {
             // Close current scene
             Stage curStage = (Stage)nextButton.getScene().getWindow();
@@ -77,13 +69,11 @@ public class HelpModifyTasksController {
             System.out.print("Scene switch unsuccessful.\n");
             return "Scene switch unsuccessful.\n";
         }
-
     }
 
     // Post-conditions: Switches scene to ToDoListController
     @FXML
     public String returnButtonPressed() {
-
         try {
             // Close current scene to return to ToDoListController that is still open in the background
             Stage curStage = (Stage)returnButton.getScene().getWindow();

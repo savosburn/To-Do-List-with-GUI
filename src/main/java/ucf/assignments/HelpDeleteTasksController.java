@@ -15,14 +15,9 @@ import javafx.stage.Stage;
 
 public class HelpDeleteTasksController {
 
-    @FXML
-    private Button returnButton;
-
-    @FXML
-    private Button nextButton;
-
-    @FXML
-    private Button backButton;
+    @FXML private Button returnButton;
+    @FXML private Button nextButton;
+    @FXML private Button backButton;
 
     // Post-conditions: Scene is switched to previous help screen
     @FXML
@@ -101,6 +96,5 @@ public class HelpDeleteTasksController {
     public void initialize() {
         assert returnButton != null : "fx:id=\"returnButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
         assert nextButton != null : "fx:id=\"nextButton\" was not injected: check your FXML file 'HelpDeleteTasksController.fxml'.";
-
     }
 }

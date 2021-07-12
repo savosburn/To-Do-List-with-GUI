@@ -150,7 +150,7 @@ class ToDoListControllerTest {
         ToDoListController tdlc = new ToDoListController();
         File file = new File("ToDoListInput.txt");
         ArrayList<String> items = new ArrayList<>();
-        ArrayList<String> actual = new ArrayList<>();
+        ArrayList<String> actual;
 
         items.add("2021-07-03^Write pseudocode^Make sure that the pseudocode accurately describes the coding process.^BooleanProperty [value: true]^");
         items.add("2021-07-03^Create puml diagram^Keep updating this diagram as the code is updated^BooleanProperty [value: true]^");
@@ -176,7 +176,7 @@ class ToDoListControllerTest {
         ToDoListController tdlc = new ToDoListController();
         ObservableList<ToDoList> tasks = FXCollections.observableArrayList();
         ObservableList<ToDoList> expected = FXCollections.observableArrayList();
-        ObservableList<ToDoList> actual = FXCollections.observableArrayList();
+        ObservableList<ToDoList> actual;
 
         // Create test ArrayList
         ArrayList<String> items = new ArrayList<>();

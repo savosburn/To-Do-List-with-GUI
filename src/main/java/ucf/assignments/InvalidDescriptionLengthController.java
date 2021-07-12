@@ -11,13 +11,11 @@ import javafx.stage.Stage;
 
 public class InvalidDescriptionLengthController {
 
-    @FXML
-    private Button okButton;
+    @FXML private Button okButton;
 
     // Post-conditions: Scene switches back to ToDoList Controller
     @FXML
     public String okButtonPressed() {
-        
         try {
             // Close scene to return to ToDoList controller that is still open in the background
             Stage curStage = (Stage)okButton.getScene().getWindow();
@@ -35,7 +33,6 @@ public class InvalidDescriptionLengthController {
 
     @FXML
     void initialize() {
-
         assert okButton != null : "fx:id=\"okButton\" was not injected: check your FXML file " +
                 "'InvalidDescriptionLengthController.fxml'.";
     }

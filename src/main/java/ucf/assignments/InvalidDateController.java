@@ -11,13 +11,11 @@ import javafx.stage.Stage;
 
 public class InvalidDateController {
 
-    @FXML
-    private Button okButton;
+    @FXML private Button okButton;
 
     // Post-conditions: Scene is switched back to ToDoList controller
     @FXML
     public String okButtonPressed() {
-
         try {
             // Close current stage to return to ToDoList Controller that is still open in the background
             Stage curStage = (Stage)okButton.getScene().getWindow();

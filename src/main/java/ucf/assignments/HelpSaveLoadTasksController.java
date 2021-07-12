@@ -15,14 +15,9 @@ import javafx.stage.Stage;
 
 public class HelpSaveLoadTasksController {
 
-    @FXML
-    private Button returnButton;
-
-    @FXML
-    private Button nextButton;
-
-    @FXML
-    private Button backButton;
+    @FXML private Button returnButton;
+    @FXML private Button nextButton;
+    @FXML private Button backButton;
 
     // Post-conditions: GUI scene is switched to previous help screen
     @FXML
@@ -53,7 +48,6 @@ public class HelpSaveLoadTasksController {
     // Post-conditions: GUI scene is switched to next help screen
     @FXML
     public String nextButtonPressed() {
-
         try {
             // Current scene closed
             Stage curStage = (Stage)nextButton.getScene().getWindow();
@@ -80,7 +74,6 @@ public class HelpSaveLoadTasksController {
     // Post-conditions: Scene switched back to ToDoList controller
     @FXML
     public String returnButtonPressed() {
-
         try {
             // Current scene closed to return to ToDoList controller that's open in the background
             Stage curStage = (Stage)returnButton.getScene().getWindow();
