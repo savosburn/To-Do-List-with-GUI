@@ -101,7 +101,6 @@ public class ToDoListController {
     public void addTaskButtonPressed() {
 
         // Create ToDoList object
-        ToDoList td = new ToDoList();
         System.out.print("Add task button pressed.\n");
 
         // Get what's in the text fields
@@ -281,6 +280,7 @@ public class ToDoListController {
         taskTable.setItems(clearedList);
     }
 
+    // Post-conditions: Returns and clears an ObservableList
     public ObservableList<ToDoList> clearEntireList(ObservableList<ToDoList> list) {
         list.clear();
 
@@ -438,6 +438,7 @@ public class ToDoListController {
         }
     }
 
+    // Post-conditions: Writes the object ot the file
     public String saveList(File file, ObservableList<ToDoList> lists) {
         String outputString = " ";
 
@@ -477,7 +478,6 @@ public class ToDoListController {
         } catch (IOException e) {
 
             // Check that the file exists
-          //  System.out.print("File does not exist.\n");
             return "File does not exist.\n";
         }
     }
@@ -563,6 +563,7 @@ public class ToDoListController {
         taskTable.setItems(filtered);
     }
 
+    // Post-conditions: Adds only incomplete items the filtered list
     public ObservableList<ToDoList> filterIncompleteList(ObservableList<ToDoList> toDoItemsList) {
 
         // For every item in the To Do List

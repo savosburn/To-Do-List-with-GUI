@@ -48,31 +48,36 @@ class ToDoListController {
     + filteredList: ObservableList<ToDoList>
 
     + addTaskButtonPressed(): add new item to existing to do list
+    + addItems(String, String, String, Boolean): Adds items to the ObservableList of items
     + toInvalidDescriptionController(): Switches scene to InvalidDateController.fxml and returns a string
-    + setToDoItems(ToDoList): Ensures that items are set properly
-    + checkDescriptionLength(): Returns true if the description is between 1 and 256 characters
+    + checkDescriptionLength(int): Returns true if the description is between 1 and 256 characters
     + clearTextFields(): Clears all the fields in the GUI
     + catchNullPointerDueDate(): Returns the value of the date picker. Returns " " if the date picker was null
     + dueDatePicked(): Returns the chosen due date
     + toInvalidDateController(): Switches scene to InvalidDateController.fxml and returns a string
-    + deleteTaskButtonPressed(): remove item from existing to do list
+    + deleteTaskButtonPressed(): returns true if the item was successfully removed
+    + deleteAllItems(ToDoList): Resets all items of to do list to null and returns the empty object
+    + deleteTask(ToDoList, ObservableList<ToDoList>): Removes task from ObservableList
     + clearListButtonPressed(): ObservableList is cleared
+    + clearEntireList(ObservableList<ToDoList>): Returns and clears an ObservableList
     + helpButtonPressed(): Switches scene to the help controller
     + toHelpController(): Switches scene to the help controller
     + fileMenuButtonClicked(): Signifies that the file menu was opened
     + loadItemsButtonPressed(): Opens file chooser to load items
-    + loadItems(File): Observable list is filled with info from .txt file
-    + addToObservableList(ArrayList<String>): Populates array list with data from loaded file
-    + parseStrings(String, ToDoList): Parses the items
+    + loadFileStrings(File): Returns an ArrayList of strings found in the file
+    + addToObservableList(ArrayList<String>): Parses the strings in the ArrayList and returns them as an ObservableList
+    + isBooleanPropertyTrue(String): Checks if the Boolean property is true or false
+    + parseStrings(String): Parses the items
     + saveItemsButtonPressed(): save all items in a single to do list to external storage
-    + saveList(File): Writes the object ot the file
+    + saveList(File, ObservableList<ToDoList>): Writes the object to the file
     + sortMenuButtonClicked(): Signifies that the sort menu was clicked
     + viewAllTasksButtonPressed()): display all existing items
-    + filterList(): Creates a list with only items whose isCompleted box is checked true
+    + getAllTasks(ObservableList<ToDoList>): Returns a list with all of the items in it
+    + filterList(ObservableList<ToDoList>)): Returns an ObservableList with items that were marked complete
     + isChecked(ToDoList): Returns state of check box
-    + viewIncompleteTasksButtonPressed(): display only the incomplete items
-    + viewCompleteTasksButtonPressed(): display completed items
-    + filterIncompleteList(): Adds only incomplete items the filtered list
+    + viewIncompleteTasksButtonPressed(): GUI displays only incompleted items
+    + viewCompleteTasksButtonPressed(): GUI displays only complete items
+    + filterIncompleteList(ObservableList<ToDoList>)): Adds only incomplete items the filtered list
     + initialize(): GUI components initialized and table set
 }
 
