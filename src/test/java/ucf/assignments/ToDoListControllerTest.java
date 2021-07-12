@@ -22,7 +22,7 @@ class ToDoListControllerTest {
         // Create Objects
         ToDoListController tdlc = new ToDoListController();
         ObservableList<ToDoList> list = FXCollections.observableArrayList();
-        ObservableList<ToDoList> actual = FXCollections.observableArrayList();
+        ObservableList<ToDoList> actual;
         ObservableList<ToDoList> expected = FXCollections.observableArrayList();
 
         // Create and populate test To Do Lists

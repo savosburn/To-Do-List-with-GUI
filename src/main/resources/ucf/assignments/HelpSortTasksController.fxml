@@ -1,88 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="454.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ucf.assignments.HelpSortTasksController">
-   <Text fill="INDIANRED" layoutX="204.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="This To Do List Application is dedicated to Rey.">
+<AnchorPane prefHeight="454.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.HelpSortTasksController">
+   <Text fill="INDIANRED" layoutX="204.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This To Do List Application is dedicated to Rey.">
       <font>
-         <Font name="System Bold" size="12.0"/>
+         <Font name="System Bold" size="12.0" />
       </font>
    </Text>
-   <Circle fill="INDIANRED" layoutX="390.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE"/>
-   <Circle fill="LIGHTCORAL" layoutX="336.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE"/>
-   <Circle fill="LIGHTCORAL" layoutX="364.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE"/>
-   <Circle fill="LIGHTCORAL" layoutX="312.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE"/>
-   <Circle fill="LIGHTCORAL" layoutX="284.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE"/>
+   <Circle fill="INDIANRED" layoutX="390.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+   <Circle fill="LIGHTCORAL" layoutX="336.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+   <Circle fill="LIGHTCORAL" layoutX="364.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+   <Circle fill="LIGHTCORAL" layoutX="312.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+   <Circle fill="LIGHTCORAL" layoutX="284.0" layoutY="416.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
    <AnchorPane prefHeight="66.0" prefWidth="716.0" style="-fx-background-color: #F08080;">
-      <Button fx:id="returnButton" layoutY="9.0" mnemonicParsing="false" onAction="#returnButtonPressed"
-              style="-fx-background-color: #F08080;" text="X" textFill="WHITE">
+      <Button fx:id="returnButton" layoutY="9.0" mnemonicParsing="false" onAction="#returnButtonPressed" style="-fx-background-color: #F08080;" text="X" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="26.0"/>
+            <Font name="System Bold" size="26.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="WHITE" layoutX="53.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help: Sort Tasks"
-            wrappingWidth="450.1998291015625">
+      <Text fill="WHITE" layoutX="53.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Help: Sort Tasks" wrappingWidth="450.1998291015625">
          <font>
-            <Font name="System Bold" size="35.0"/>
+            <Font name="System Bold" size="35.0" />
          </font>
       </Text>
-      <Button fx:id="backButton" layoutX="624.0" layoutY="11.0" mnemonicParsing="false" onAction="#backButtonPressed"
-              prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Back" textFill="WHITE">
+      <Button fx:id="backButton" layoutX="624.0" layoutY="11.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="34.0" prefWidth="67.0" style="-fx-background-color: #cd5c5c;" text="Back" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="18.0"/>
+            <Font name="System Bold" size="18.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
    </AnchorPane>
-   <Text fill="INDIANRED" layoutX="102.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="To sort by completion: Select &quot;Sort&quot; and choose to sort by completed, incompleted, or all tasks"
-         textAlignment="CENTER" wrappingWidth="523.3749771118164">
+   <Text fill="INDIANRED" layoutX="102.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To sort by completion: Select &quot;Sort&quot; and choose to sort by completed, incompleted, or all tasks" textAlignment="CENTER" wrappingWidth="523.3749771118164">
       <font>
-         <Font name="System Bold" size="21.0"/>
+         <Font name="System Bold" size="21.0" />
       </font>
    </Text>
-   <Text fill="INDIANRED" layoutX="102.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="To sort by title, description, or date: Select the column header of the category you'd like to sort by."
-         textAlignment="CENTER" wrappingWidth="523.3749771118164">
+   <Text fill="INDIANRED" layoutX="102.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To sort by title, description, or date: Select the column header of the category you'd like to sort by." textAlignment="CENTER" wrappingWidth="523.3749771118164">
       <font>
-         <Font name="System Bold" size="21.0"/>
+         <Font name="System Bold" size="21.0" />
       </font>
    </Text>
-   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="244.0" pickOnBounds="true"
-              preserveRatio="true">
-      <Image url="@../Images/SortCompletion.png"/>
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/SortCompletion.png" />
    </ImageView>
-   <ImageView fitHeight="83.0" fitWidth="511.0" layoutX="191.0" layoutY="319.0" pickOnBounds="true"
-              preserveRatio="true">
-      <Image url="@../Images/SortHeader.png"/>
+   <ImageView fitHeight="83.0" fitWidth="511.0" layoutX="191.0" layoutY="319.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../Images/SortHeader.png" />
    </ImageView>
-   <Text fill="INDIANRED" layoutX="246.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓">
+   <Text fill="INDIANRED" layoutX="246.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓" wrappingWidth="45.328125">
       <font>
-         <Font name="System Bold" size="96.0"/>
+         <Font name="System Bold" size="96.0" />
       </font>
    </Text>
-   <Text fill="INDIANRED" layoutX="434.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓">
+   <Text fill="INDIANRED" layoutX="446.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓">
       <font>
-         <Font name="System Bold" size="96.0"/>
+         <Font name="System Bold" size="96.0" />
       </font>
    </Text>
-   <Text fill="INDIANRED" layoutX="625.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓">
+   <Text fill="INDIANRED" layoutX="634.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="↓">
       <font>
-         <Font name="System Bold" size="96.0"/>
+         <Font name="System Bold" size="96.0" />
+      </font>
+   </Text>
+   <Text fill="INDIANRED" layoutX="183.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To quickly sort by date, select: ">
+      <font>
+         <Font name="System Bold" size="21.0" />
+      </font>
+   </Text>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTCORAL" height="39.0" layoutX="491.0" layoutY="225.0" stroke="#f2f2f2" strokeType="INSIDE" width="157.0" />
+   <Text fill="WHITE" layoutX="507.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quick Date Sort">
+      <font>
+         <Font name="System Bold" size="17.0" />
       </font>
    </Text>
 </AnchorPane>
