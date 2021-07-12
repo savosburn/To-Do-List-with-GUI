@@ -11,9 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,11 +53,29 @@ public class ToDoListController {
     @FXML private TextField taskTitleTextField;
     @FXML private TextField taskDescriptionTextField;
     @FXML private DatePicker dueDatePicker;
+    @FXML private Button quickSortButton;
 
     FileChooser fileChooser = new FileChooser();
 
     ObservableList<ToDoList> toDoItems = FXCollections.observableArrayList();
     ObservableList<ToDoList> filteredList = FXCollections.observableArrayList();
+
+    // Bonus credit: Sort by due date method
+    @FXML
+    public void quickSortButtonPressed() {
+
+        ObservableList<ToDoList> sorted = toDoItems;
+
+        taskTable.refresh();
+        taskTable.setItems(sort(sorted));
+    }
+
+    // Post-conditions: Sorts an observable list
+    public ObservableList<ToDoList> sort(ObservableList<ToDoList> toDo) {
+        Comparator<ToDoList> dateComparator = Comparator.comparing(ToDoList :: getDueDate);
+        toDo.sort(dateComparator);
+        return toDo;
+    }
 
     // Post-conditions: Adds new ToDoList object to the Observable List
     @FXML
@@ -552,6 +568,7 @@ public class ToDoListController {
         assert taskDescriptionTextField != null : "fx:id=\"taskDescriptionTextField\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert dueDatePicker != null : "fx:id=\"dueDatePicker\" was not injected: check your FXML file 'ToDoListController.fxml'.";
         assert deleteTaskButton != null : "fx:id=\"deleteTaskButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
+        assert quickSortButton != null : "fx:id=\"quickSortButton\" was not injected: check your FXML file 'ToDoListController.fxml'.";
 
         // Set the initial directory of the file chooser to be the user's directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));

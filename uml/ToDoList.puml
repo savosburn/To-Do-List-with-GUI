@@ -47,6 +47,8 @@ class ToDoListController {
     + toDoItems: ObservableList<ToDoList>
     + filteredList: ObservableList<ToDoList>
 
+    + quickSortButtonPressed(): Sorts by ascending due date
+    + sort(ObservableList<ToDoList>): Sorts an observable list
     + addTaskButtonPressed(): add new item to existing to do list
     + addItems(String, String, String, Boolean): Adds items to the ObservableList of items
     + toInvalidDescriptionController(): Switches scene to InvalidDateController.fxml and returns a string

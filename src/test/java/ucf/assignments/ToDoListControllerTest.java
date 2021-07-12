@@ -16,6 +16,55 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ToDoListControllerTest {
 
+    // Bonus credit: Sort by due date test
+    @Test
+    public void sortTest() {
+        // Create Objects
+        ToDoListController tdlc = new ToDoListController();
+        ObservableList<ToDoList> list = FXCollections.observableArrayList();
+        ObservableList<ToDoList> actual = FXCollections.observableArrayList();
+        ObservableList<ToDoList> expected = FXCollections.observableArrayList();
+
+        // Create and populate test To Do Lists
+        ToDoList toDo = new ToDoList();
+        ToDoList tdl = new ToDoList();
+        ToDoList newToDo = new ToDoList();
+
+        toDo.setDueDate("2021-07-21");
+        toDo.setTaskTitle("finish program");
+        toDo.setTaskDescription("cry");
+        toDo.setIsCompleted(false);
+        list.add(toDo);
+
+        tdl.setDueDate("2021-07-28");
+        tdl.setTaskTitle("eat cake");
+        tdl.setTaskDescription("celebrate");
+        tdl.setIsCompleted(true);
+        list.add(tdl);
+
+        newToDo.setDueDate("2021-07-27");
+        newToDo.setTaskTitle("go to orlando");
+        newToDo.setTaskDescription("have fun");
+        newToDo.setIsCompleted(false);
+        list.add(newToDo);
+
+        // Get the expected sorted list
+        expected.add(toDo);
+        expected.add(newToDo);
+        expected.add(tdl);
+
+        // Get the actual sorted list
+        actual = tdlc.sort(list);
+
+        // Ensure that the two lists are the same
+        for (int i = 0; i < expected.size(); i++ ) {
+            assertEquals(expected.get(i).getTaskTitle(), actual.get(i).getTaskTitle());
+            assertEquals(expected.get(i).getTaskDescription(), actual.get(i).getTaskDescription());
+            assertEquals(expected.get(i).getDueDate(), actual.get(i).getDueDate());
+            assertEquals(expected.get(i).isCompleted(), actual.get(i).isCompleted());
+        }
+    }
+
     @Test
     public void addItemsTest() {
         // Create objects
